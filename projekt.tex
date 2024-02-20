@@ -1,36 +1,78 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,oneside,slovak,a4paper]{article}
 
+\usepackage[slovak]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{cite}
+\usepackage[IL2]{fontenc} % lepšia sadzba písmena Ľ než v T1
+\usepackage{pdfpages}
+\usepackage{url} % príkaz \url na formátovanie URL
+\usepackage{hyperref} % odkazy v texte budú aktívne (pri niektorých triedach dokumentov spôsobuje posun textu)
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{titling}
 
-\title{Principles of Information Security: Freely Distributed Tools for Recovering Deleted Files}
-\author{Your Name}
-\date{\today}
 
+%\title{   
+%Voľne šíriteľné nástroje na obnovu zmazaných súborov}
+%\author{Marek Čederle\\[2pt]
+%	{\small Slovenská technická univerzita v Bratislave}\\
+%	{\small Fakulta informatiky a informačných technológií}\\
+%	{\small \texttt{xcederlem@stuba.sk}}
+%	}
+%\date{\small \today}
+%
 \begin{document}
 
-\maketitle
+%\vspace{50pt}
+%\maketitle
+%\vspace*{\fill}
+%\pagebreak
 
-\section{Introduction}
-Here, you can introduce your topic and provide a brief overview of what you will be discussing in your project.
+\begin{titlepage}
+	\centering
+	{\LARGE \textsc{}\par}
+	\vspace{5cm}
+	{\Large \textsc{Princípy informačnej bezpečnosti}\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Voľne šíriteľné nástroje na obnovu zmazaných súborov\par}
+    \vspace{1cm}
+    {\large Slovenská technická univerzita v Bratislave\par}
+    {\large Fakulta informatiky a informačných technológií\par}
+	\vspace{1cm}
+	{\Large\itshape Marek Čederle\par}
+    {\small\texttt{xcederlem@stuba.sk}\par}
+	\vfill
 
-\section{Analysis of File Systems}
-In this section, you can discuss your analysis of file systems.
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
 
-\section{Analysis of Freely Available Data Recovery Tools}
-Here, you can discuss your analysis of freely available data recovery tools. You can also mention why you chose the specific tool (e.g., testdisk) for your project.
 
-\section{Experimenting with the Chosen Data Recovery Tool}
-In this section, you can discuss your experiments with the chosen data recovery tool. You can provide details about the experiments you conducted, the results you obtained, and your observations.
+\tableofcontents
+\vspace*{\fill}
 
-\section{Conclusion}
-Here, you can summarize your findings and provide a conclusion for your project.
+\section{Úvod}
+Tu môžete predstaviť\cite{TEST} svoju tému a poskytnúť stručný prehľad toho, o čom budete vo svojom projekte diskutovať.
 
-\section{References}
-Here, you can list the references you used for your project.
+\section{Analýza súborových systémov}
+V tejto časti môžete diskutovať o svojej analýze súborových systémov.
 
+\section{Analýza voľne dostupných nástrojov na obnovu údajov (napr. testdisk)}
+Tu môžete diskutovať o svojej analýze voľne dostupných nástrojov na obnovu dát. Môžete tiež spomenúť, prečo ste si pre svoj projekt vybrali konkrétny nástroj (napr. testdisk).
+
+\section{Experimentovanie so zvoleným nástrojom na obnovu údajov}
+V tejto časti môžete diskutovať o svojich experimentoch s vybraným nástrojom na obnovu údajov. Môžete poskytnúť podrobnosti o experimentoch, ktoré ste vykonali, získaných výsledkoch a svojich pozorovaniach.
+
+\section{Záver}
+Tu môžete zhrnúť svoje zistenia a poskytnúť záver pre váš projekt.
+
+
+\bibliography{literatura}
+\bibliographystyle{alpha}
 \end{document}
