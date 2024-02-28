@@ -59,13 +59,13 @@
 \section{Špecifikácia projektu / Úvod}
 V mojom projekte sa budem venovať analýze súborových systémov pre operačné systémy Windows a GNU+Linux. Bude sa jednať o súborové systémy typu NTFS a ext ale spomeniem aj dodnes veľmi používaný FAT32 a exFAT ktoré sa používajú na prenosných médiách. Každý súborový systém by som chcel opísať s tým, že uvediem jeho výhody a nevýhody prípadné porovnanie s ďalšími spomenutými súborovými systémami. Budem sa zaoberať aj tým, ako správne naformátovať disk (prepísať ho náhodnými dátami alebo samými nulami) aby pri jeho predaji sa z bezpečnostných dôvodov nedalo zistiť čo sa na ňom pred tým nachádzalo. Je to z dôvodu že pri mazaní dát z disku sa vlastne tieto dáta reálne nemažú. Dáta na disku ostanú len sa z tabuľky záznamov zahodí záznam kde sa súbor nachádza a potom keď sa zapisuje na disk tak operačný systém vie že môže na toto miesto zapisovať. Taktiež sa budem zaoberať analýzou nástroju na obnovu zmazaných súborov s názvom testdisk\cite{TSDK}. Vysvetlím, prečo som si vybral práve tento nástroj. S týmto nástrojom budem následne experimentovať. Experimenty budú spočívať v tom, že si naformátujem disk a vytvorím na ňom nejaké partície podľa typu daného súborového systému. Následne naň uložím rôzne typy súborov. Budú sa tam nachádzať fotky, textové súbory, archívy, atď. Potom vymažem nejaké z týchto súborov, ale na disk ďalej nič nezapíšem, aby sa nezačali prepisovať dané miesta na disku inými súbormi. Následne vyskúšam nástroj na obnovu zmazaných súborov (testdisk) či zvládne tieto súbory obnoviť. Tento experiment zopakujem s tým, že po zmazaní ďalších súborov zapíšem na disk zase nové súbory a vyskúšam použiť nástroj na obnovu či dokáže aj po takejto akcii obnoviť súbory. Ďalší experiment bude spočívať v zmazaní celej partície a jej následnej obnove týmto nástrojom. Na záver budem prezentovať výsledky experimentov.
 \subsection{Progress report č.1}
-V prvom progress reporte vypracujem teoretickú časť, ktorú som na začiatku uviedol. To znamená popísanie rôznych typov súborových systémov a nástrojov na obnovu súborov. V neposlednom rade uvediem ako z bezpečnostného hladiska správne ``zmazať'' súbory na disku respektíve ako ho naformátovať tak, aby sa z neho minulé dáta nedali prečítať.
+V prvom progress reporte vypracujem teoretickú časť, ktorú som na začiatku uviedol. To znamená popísanie rôznych typov súborových systémov a nástrojov na obnovu súborov. V neposlednom rade uvediem ako z bezpečnostného hľadiska správne ``zmazať'' súbory na disku respektíve ako ho naformátovať tak, aby sa z neho minulé dáta nedali prečítať.
 
 \subsection{Progress report č.2}
-V tomto progress reporte sa budem zameriavať na praktickú/experimentálnu časť. To znamená, že sa pokusím vykonať všetky vyššie spomenuté experimenty. Na záver budem pracovať na celkovej úprave finálneho dokumentu.
+V tomto progress reporte sa budem zameriavať na praktickú/experimentálnu časť. To znamená, že sa pokúsim vykonať všetky vyššie spomenuté experimenty. Na záver budem pracovať na celkovej úprave finálneho dokumentu.
 
 \subsection{Ciele projektu}
-Cieľom tohto projektu je získať informácie z oblasti súborových systémov a vykonať rôzne experimenty s nástrojmi na obnovu údajov. Kedže sa jedná o predmet Princípy informačnej bezpečnosti, tak cieľom je poukázať na dopady neformátovania respektíve neefektívneho ``ničenia'' súborov na bezpečnosť.
+Cieľom tohto projektu je získať informácie z oblasti súborových systémov a vykonať rôzne experimenty s nástrojmi na obnovu údajov. Keďže sa jedná o predmet Princípy informačnej bezpečnosti, tak cieľom je poukázať na dopady neformátovania respektíve neefektívneho ``ničenia'' súborov na bezpečnosť.
 
 
 %\section{Úvod}
@@ -82,7 +82,7 @@ Cieľom tohto projektu je získať informácie z oblasti súborových systémov 
 \subsection{Testdisk}
 \subsection{(Nejaký iný nástroj..)}
 
-\section{Analýza nástroja na obnovu údajov - testdisk (táto sekcia tu asi nebude, kedže to už mám vyššie)}
+\section{Analýza nástroja na obnovu údajov - testdisk (táto sekcia tu asi nebude, keďže to už mám vyššie)}
 
 \section{Experimentovanie s nástrojom testdisk}
 \subsection{Zmazanie a obnova súborov}
