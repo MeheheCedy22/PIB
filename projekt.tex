@@ -48,6 +48,7 @@
 \tableofcontents
 \vspace*{\fill}
 
+% ----------------- 1. kapitola -----------------
 
 \section{Špecifikácia projektu}
 V mojom projekte sa budem venovať analýze súborových systémov pre operačné systémy Windows a GNU+Linux. Bude sa jednať o súborové systémy typu NTFS a ext ale spomeniem aj dodnes veľmi používané FAT32 a exFAT ktoré sa používajú na prenosných médiách. Každý súborový systém by som chcel opísať s tým, že uvediem jeho výhody a nevýhody prípadné porovnanie s ďalšími spomenutými súborovými systémami.
@@ -64,15 +65,26 @@ V tomto progress reporte sa budem zameriavať na praktickú/experimentálnu čas
 \subsection{Ciele projektu}
 Cieľom tohto projektu je získať informácie z oblasti súborových systémov a vykonať rôzne experimenty s nástrojmi na obnovu údajov. Keďže sa jedná o predmet Princípy informačnej bezpečnosti, tak cieľom je poukázať na dopady neformátovania respektíve neefektívneho ``ničenia'' súborov na bezpečnosť.
 
+% ----------------- 2. kapitola -----------------
+
 \section{Súborové systémy}
+Súborový systém je metóda a dátová štruktúra, ktorú operačný systém používa na riadenie spôsobu ukladania a načítavania dát. Bez súborového systému by dáta umiestnené na pamäťovom médiu boli jedným veľkým zväzkom dát bez možnosti určiť, kde končí jeden súbor a začína ďalší, alebo kde sa nachádza, keď je potrebné ho načítať. Rozdelením dát na časti a pomenovaním každej časti sa dáta ľahko izolujú a identifikujú. NKaždá skupina dát sa nazýva súbor.\cite{WIKI}
+
 \subsection{FAT - File Allocation Table}
+
+
 \subsubsection{FAT32}
+
+
 \subsubsection{exFAT}
+
+
 \subsection{NTFS - New Technology File System}
 NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{angl. New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{angl. Hard Disk Drive} a neskôr aj pre SSD\footnote{angl. Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne. 
 
 
 Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT, ktorý bol jeho predchodcom v ére operačného systému MS DOS.
+
 \subsubsection{Štruktúra NTFS}
 Novo naformátovaný disk s NTFS vyzerá nasledovne:
 
@@ -109,11 +121,6 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 		\end{itemize}
 \end{itemize}
 
-
-
-
-% mozem pouzit aj \ref{fig:ntfs-struct} na odkaz na obrazok
-
 \subsubsection{Bezpečnosť NTFS}
 Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým lokálnym súborom a priečinkom. Inými slovami, dôverný súbor môžete nastaviť tak, aby bol pre niektorých iných používateľov nedostupný.
 
@@ -122,7 +129,8 @@ Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým 
 
 
 \subsubsection{Výhody a nevýhody NTFS}
-% vytvor tabulku pre vyhody a nevyhody
+
+% tabulka s výhodami a nevýhodami
 \begin{table}[H]
 \begin{tabularx}{\linewidth}{|X|X|}
 \hline
@@ -138,25 +146,38 @@ Zameriava na konzistenciu súborového systému, takže v prípade výpadku nap�
 \captionsetup{justification=centering,margin=2cm}
 \caption{Výhody a nevýhody súborového systému NTFS \\ Zdroj: https://superops.com/ntfs-vs-fat32}
 \end{table}
-
-
+% ------------- koniec tabulky -------------
 
 \subsection{ext - Extended File System}
 
+
+% ----------------- 3. kapitola -----------------
+
 \section{Nástroje na obnovu údajov}
+
+
 \subsection{Testdisk}
+
+
 \subsection{(Nejaký iný nástroj..)}
+
 
 \section{Analýza nástroja na obnovu údajov - testdisk (táto sekcia tu asi nebude, keďže to už mám vyššie)}
 
 \section{Experimentovanie s nástrojom testdisk}
+
+
 \subsection{Zmazanie a obnova súborov}
+
+
 \subsection{Zmazanie a obnova partície}
+
 
 \section{Výsledky experimentov}
 
+
 \section{Záver}
-Temp citovanie vsetkych citacii na ich zobrazenie.\cite{TSDK,NTFS,NTFS2,NTFS3,NTFS4,FAT,EXT,ALLFS}
+Temp citovanie vsetkych citacii na ich zobrazenie.\cite{TSDK,NTFS,NTFS2,NTFS3,FAT,EXT,ALLFS}
 
 
 \bibliography{literatura}
