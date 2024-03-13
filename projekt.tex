@@ -20,6 +20,7 @@
 \usepackage{lipsum}
 \usepackage{setspace}
 \usepackage{blindtext}
+\usepackage{caption}
 
 % riadkovanie 1.5
 \begin{document}
@@ -74,7 +75,7 @@ Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spo
 Novo naformátovaný disk s NTFS vyzerá nasledovne:
 
 \includegraphics[width=\linewidth]{ntfs-file-system-structure.png}
-
+\captionof{figure}{Štruktúra súborového systému NTFS}
 
 % bulleted list plus riadkovanie iba na danu cas textu
 \setstretch{1.0}
@@ -94,6 +95,12 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 
 
 % mozem pouzit aj \ref{fig:ntfs-struct} na odkaz na obrazok
+
+\subsubsection{Bezpečnosť NTFS}
+Pouziva ACL encryption a podobne
+\subsubsection{Výhody a nevýhody NTFS}
+Spomenut vyhody a nevyhody, niektore som uz spomenul na zaciatku
+
 
 \subsection{ext}
 
