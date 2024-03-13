@@ -21,6 +21,7 @@
 \usepackage{setspace}
 \usepackage{blindtext}
 \usepackage{caption}
+\usepackage{tabularx}
 
 % riadkovanie 1.5
 \begin{document}
@@ -70,25 +71,41 @@ Cieľom tohto projektu je získať informácie z oblasti súborových systémov 
 NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{angl. New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{angl. Hard Disk Drive} a neskôr aj pre SSD\footnote{angl. Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne. 
 
 
-Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT.
+Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT, ktorý bol jeho predchodcom v ére operačného systému MS DOS.
 \subsubsection{Štruktúra NTFS}
 Novo naformátovaný disk s NTFS vyzerá nasledovne:
 
+\begin{figure}[H]
+\centering
+\captionsetup{justification=centering,margin=2cm}
 \includegraphics[width=\linewidth]{ntfs-file-system-structure.png}
-\captionof{figure}{Štruktúra súborového systému NTFS}
+\centering
+\caption{Štruktúra súborového systému NTFS \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
+\end{figure}
 
 % bulleted list plus riadkovanie iba na danu cas textu
 \setstretch{1.0}
 \begin{itemize}
 	\item Partition Boot Sector
-	\begin{itemize}
-		\item 
-	\end{itemize}
+		\begin{itemize}
+			\item Obsahuje informácie potrebné pre bootovanie. Primárne sa jedná o BootStrap čo je vlastne malý program, ktorý ma za úlohu načítať operačný systém do pamäte.
+		\end{itemize}
 	\item Metadata
+		\begin{itemize}
+			\item Pomáha definovať a organizovať súborový systém, zálohovať kritické údaje súborového systému.
+		\end{itemize}
 	\item Master File Table (MFT)
+		\begin{itemize}
+			\item Obsahuje záznamy o všetkých súboroch a adresároch na disku. Je to v podstate ekvivalent FAT tabuľky.
+		\end{itemize}
 	\item Data
+		\begin{itemize}
+			\item Obsahuje samotné dáta súborov.
+		\end{itemize}
 	\item MFT Backup
-	\item Data
+		\begin{itemize}
+			\item Obsahuje zálohu MFT tabuľky.
+		\end{itemize}
 \end{itemize}
 
 
@@ -97,9 +114,30 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 % mozem pouzit aj \ref{fig:ntfs-struct} na odkaz na obrazok
 
 \subsubsection{Bezpečnosť NTFS}
-Pouziva ACL encryption a podobne
+Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým lokálnym súborom a priečinkom. Inými slovami, dôverný súbor môžete nastaviť tak, aby bol pre niektorých iných používateľov nedostupný.
+
+% Mozno este toto pridat
+% Pouziva ACL encryption a podobne
+
+
 \subsubsection{Výhody a nevýhody NTFS}
-Spomenut vyhody a nevyhody, niektore som uz spomenul na zaciatku
+% vytvor tabulku pre vyhody a nevyhody
+\begin{table}[H]
+\begin{tabularx}{\linewidth}{|X|X|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Výhody}} & \multicolumn{1}{c|}{\textbf{Nevýhody}} \\ \hline
+Podporuje veľmi veľké súbory a nemá takmer žiadne reálne obmedzenie veľkosti oddielu. & Má uzatvorený zdrojový kód. \\ \hline
+Poskytuje vylepšené zabezpečenie údajov pomocou funkcií riadenia úrovne prístupu a natívneho šifrovania. & Mac OS dokáže čítať jednotky naformátované v systéme NTFS, ale na systém NTFS je možné zapisovať iba prostredníctvom softvéru tretej strany. \\ \hline
+Podporuje automatickú kompresiu súborov, čo umožňuje rýchlejší prenos súborov a väčší úložný priestor na disku. & Prenosné zariadenia, ako sú smartfóny so systémom Android a digitálne fotoaparáty, ho nepodporujú. \\ \hline
+Umožňuje diskové kvóty, ktoré firmám poskytujú väčšiu kontrolu nad úložným priestorom. & Kompatibilita so systémami založenými na GNU+Linux síce existuje ale iba kvôli vôli softvérových inžinerov urobiť ovladače vďaka reverznému inžinierstvu. \\ \hline
+Umožňuje používateľom sledovať pridané, upravené alebo odstránené súbory na disku. &  \\ \hline
+Zameriava na konzistenciu súborového systému, takže v prípade výpadku napájania alebo zlyhania systému môžete rýchlo obnoviť svoje údaje. &  \\ \hline
+\end{tabularx}
+\centering
+\captionsetup{justification=centering,margin=2cm}
+\caption{Výhody a nevýhody súborového systému NTFS \\ Zdroj: https://superops.com/ntfs-vs-fat32}
+\end{table}
+
 
 
 \subsection{ext}
