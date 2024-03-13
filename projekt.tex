@@ -16,25 +16,14 @@
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
 \usepackage{titling}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{setspace}
+\usepackage{blindtext}
 
-
-
-%\title{   
-%Voľne šíriteľné nástroje na obnovu zmazaných súborov}
-%\author{Marek Čederle\\[2pt]
-%	{\small Slovenská technická univerzita v Bratislave}\\
-%	{\small Fakulta informatiky a informačných technológií}\\
-%	{\small \texttt{xcederlem@stuba.sk}}
-%	}
-%\date{\small \today}
-%
+% riadkovanie 1.5
 \begin{document}
 \linespread{1.5}\selectfont
-
-%\vspace{50pt}
-%\maketitle
-%\vspace*{\fill}
-%\pagebreak
 
 \begin{titlepage}
 	\centering
@@ -49,7 +38,6 @@
     {\small\texttt{xcederlem@stuba.sk}\par}
 	\vfill
 
-% Bottom of the page
 	{\large \today\par}
 \end{titlepage}
 
@@ -73,10 +61,6 @@ V tomto progress reporte sa budem zameriavať na praktickú/experimentálnu čas
 \subsection{Ciele projektu}
 Cieľom tohto projektu je získať informácie z oblasti súborových systémov a vykonať rôzne experimenty s nástrojmi na obnovu údajov. Keďže sa jedná o predmet Princípy informačnej bezpečnosti, tak cieľom je poukázať na dopady neformátovania respektíve neefektívneho ``ničenia'' súborov na bezpečnosť.
 
-
-%\section{Úvod}
-%Tu môžete predstaviť\cite{TEST} svoju tému a poskytnúť stručný prehľad toho, o čom budete vo svojom projekte diskutovať.
-
 \section{Súborové systémy}
 \subsection{FAT - File Allocation Table}
 \subsubsection{FAT32}
@@ -88,12 +72,28 @@ NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bo
 Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT.
 \subsubsection{Štruktúra NTFS}
 Novo naformátovaný disk s NTFS vyzerá nasledovne:
-% obrázok štruktúry NTFS
-\begin{figure}
-	\includegraphics[width=\linewidth]{ntfs-file-system-structure.png}
-	\caption{Štruktúra disku s NTFS}
-	\label{fig:ntfs-struct}
-  \end{figure}
+
+\includegraphics[width=\linewidth]{ntfs-file-system-structure.png}
+
+
+% bulleted list plus riadkovanie iba na danu cas textu
+\setstretch{1.0}
+\begin{itemize}
+	\item Partition Boot Sector
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\item Metadata
+	\item Master File Table (MFT)
+	\item Data
+	\item MFT Backup
+	\item Data
+\end{itemize}
+
+
+
+
+% mozem pouzit aj \ref{fig:ntfs-struct} na odkaz na obrazok
 
 \subsection{ext}
 
