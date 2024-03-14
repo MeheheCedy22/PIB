@@ -74,7 +74,7 @@ Súborový systém je metóda a dátová štruktúra, ktorú operačný systém 
 FAT je súborový systém vyvinutý pre osobné počítače. Pôvodne vyvinutý v roku 1977 na použitie na disketách, neskôr bol prispôsobený na použitie na pevných diskoch a iných zariadeniach. Často je z dôvodov kompatibility podporovaný súčasnými operačnými systémami pre osobné počítače a mnohými mobilnými zariadeniami a ``embed'' systémami. FAT ako taký je už v dnešnej dobe nepoužívaný, ale jeho odnože (FAT32, exFAT) sa doteraz používajú napríklad v prenosných médiách ako USB kľúče, SD karty a podobne.
 
 
-\subsubsection{Štruktúra FAT}
+\subsubsection{Štruktúra FAT a FAT32}
 Novo naformátovaný disk s FAT vyzerá nasledovne:
 
 \begin{figure}[H]
@@ -89,18 +89,32 @@ Novo naformátovaný disk s FAT vyzerá nasledovne:
 \begin{itemize}
 	\item Reserved Area
 		\begin{itemize}
-			\item 
+			\item Obsahuje boot sector, BPB (BIOS Parameter Block) a celkovo informácie potrebné pre bootovanie a súborový systém.
 		\end{itemize}
 	\item 1st FAT Area
+		\begin{itemize}
+			\item FAT tabuľka obsahujúca informácie o súboroch a ich umiestnení na disku.
+		\end{itemize}
 	\item 2nd FAT Area
+		\begin{itemize}
+			\item Obsahuje kópiu FAT tabuľky.
+		\end{itemize}
 	\item Boot Directory
+		\begin{itemize}
+			\item Niekedy sa nazýva aj Root Directory. Používa sa iba v derivátoch FAT12 a FAT16. Obsahuje informácie o súboroch, ktoré sa nachádzajú priamo v koreňovom adresári.
+		\end{itemize}
 	\item Data Area
+		\begin{itemize}
+			\item Obsahuje samotné dáta súborov.
+		\end{itemize}
 \end{itemize}
 
 \subsubsection{FAT32}
 
 
 \subsubsection{exFAT}
+
+
 
 
 \subsection{NTFS - New Technology File System}
@@ -150,6 +164,8 @@ Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým 
 
 % Mozno este toto pridat
 % Pouziva ACL encryption a podobne
+% pridat sem o EFS (Encrypting File System) z https://www.ntfs.com/ntfs-encrypted.htm
+% obnova dát https://www.ntfs.com/data-integrity.htm
 
 
 \subsubsection{Výhody a nevýhody NTFS}
