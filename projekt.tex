@@ -73,6 +73,8 @@ Súborový systém je metóda a dátová štruktúra, ktorú operačný systém 
 \subsection{FAT - File Allocation Table}
 FAT je súborový systém vyvinutý pre osobné počítače. Pôvodne vyvinutý v roku 1977 na použitie na disketách, neskôr bol prispôsobený na použitie na pevných diskoch a iných zariadeniach. Často je z dôvodov kompatibility podporovaný súčasnými operačnými systémami pre osobné počítače a mnohými mobilnými zariadeniami a ``embed'' systémami. FAT ako taký je už v dnešnej dobe nepoužívaný, ale jeho odnože (FAT32, exFAT) sa doteraz používajú napríklad v prenosných médiách ako USB kľúče, SD karty a podobne.
 
+\subsubsection{FAT32}
+Najpokročilejšia verzia súborového systému FAT je FAT32. S FAT32 sa Microsoft snažil prekonať obmedzenia FAT16 a prispôsobiť sa väčším možným partíciám. Existuje už od Windowsu 95 a naďalej zostáva populárny, pretože je vysoko kompatibilný s väčšinou operačných systémov (GNU+Linux, MAC) a prenosných zariadení. FAT32 podporuje súbory menšie ako 4 GB a partície s maximálnou veľkosťou 2 TB.\cite{NTvsFAT}
 
 \subsubsection{Štruktúra FAT a FAT32}
 Novo naformátovaný disk s FAT vyzerá nasledovne:
@@ -109,12 +111,63 @@ Novo naformátovaný disk s FAT vyzerá nasledovne:
 		\end{itemize}
 \end{itemize}
 
-\subsubsection{FAT32}
+\subsubsection{exFAT - Extensible File Allocation Table}
+exFAT je súborový systém predstavený spoločnosťou Microsoft v roku 2006 a optimalizovaný pre flash pamäte, ako sú USB flash disky a SD karty. exFAT bol proprietárny do 28. augusta 2019, kedy Microsoft zverejnil jeho špecifikáciu. Microsoft však stále vlastní patenty na niekoľko častí svojho dizajnu.
 
+exFAT možno použiť tam, kde NTFS nie je vhodným riešením (kvôli vysokej réžii\footnote{angl. overhead}), ale kde je potrebná podpora súborov väčších ako 4 GB.
 
-\subsubsection{exFAT}
+exFAT bol prijatý SD Association ako predvolený súborový systém pre karty SDXC väčšie ako 32 GB.
 
+Windows 8 a novšie verzie natívne podporujú bootovanie z exFAT.\cite{EXFAT}
 
+\subsubsection{Štruktúra exFAT}
+Novo naformátovaný disk s exFAT vyzerá nasledovne:
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=\linewidth]{exfat-file-system-structure.png}
+	\centering
+	\caption{Štruktúra súborového systému FAT a FAT32 \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
+\end{figure}
+
+\setstretch{1.0}
+\begin{itemize}
+	\item Main Boot Region
+		\begin{itemize}
+			\item Informácie potrebné pre bootovanie.
+		\end{itemize}
+	\item Backup Boot Region
+		\begin{itemize}
+			\item Záloha Main Boot Region.
+		\end{itemize}
+	\item FAT Alignment
+		\begin{itemize}
+			\item FAT offset a veľkosť.
+		\end{itemize}
+	\item 1st FAT
+		\begin{itemize}
+			\item FAT tabuľka obsahujúca informácie o súboroch a ich umiestnení na disku.
+		\end{itemize}
+	\item 2nd FAT
+		\begin{itemize}
+			\item Záloha FAT tabuľky.
+		\end{itemize}
+	\item Cluster Heap Alignment
+		\begin{itemize}
+			\item Cluster heap offset a veľkosť.
+		\end{itemize}
+	\item Cluster Heap
+		\begin{itemize}
+			\item Obsahuje samotné dáta súborov.
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Výhody a nevýhody FAT32 a exFAT}
+% dorobit
+% tabulka pre FAT32
+
+% tabulka pre exFAT
 
 
 \subsection{NTFS - New Technology File System}
@@ -143,7 +196,7 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 		\end{itemize}
 	\item Metadata
 		\begin{itemize}
-			\item Pomáha definovať a organizovať súborový systém, zálohovať kritické údaje súborového systému.
+			\item Pomáhajú definovať a organizovať súborový systém, zálohovať kritické údaje súborového systému.
 		\end{itemize}
 	\item Master File Table (MFT)
 		\begin{itemize}
@@ -217,7 +270,7 @@ Zameriava na konzistenciu súborového systému, takže v prípade výpadku nap�
 
 
 \section{Záver}
-Temp citovanie vsetkych citacii na ich zobrazenie.\cite{TSDK,NTFS,NTFS2,NTFS3,FAT,EXT,ALLFS}
+Temp citovanie vsetkych citacii na ich zobrazenie.\cite{TSDK,NTFS,NTFS2,NTFS3,FAT,EXT,ALLFS,FS,NTvsFAT,EXFAT}
 
 
 \bibliography{literatura}
