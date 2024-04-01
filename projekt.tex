@@ -71,7 +71,7 @@ Cieľom tohto projektu je získať informácie z oblasti súborových systémov 
 % ----------------- 2. kapitola -----------------
 
 \section{Súborové systémy}
-Súborový systém je metóda a dátová štruktúra, ktorú operačný systém používa na riadenie spôsobu ukladania a načítavania dát. Bez súborového systému by dáta umiestnené na pamäťovom médiu boli jedným veľkým zväzkom dát bez možnosti určiť, kde končí jeden súbor a začína ďalší, alebo kde sa nachádza, keď je potrebné ho načítať. Rozdelením dát na časti a pomenovaním každej časti sa dáta ľahko izolujú a identifikujú. NKaždá skupina dát sa nazýva súbor.
+Súborový systém je metóda a dátová štruktúra, ktorú operačný systém používa na riadenie spôsobu ukladania a načítavania dát. Bez súborového systému by dáta umiestnené na pamäťovom médiu boli jedným veľkým zväzkom dát bez možnosti určiť, kde končí jeden súbor a začína ďalší, alebo kde sa nachádza, keď je potrebné ho načítať. Rozdelením dát na časti a pomenovaním každej časti sa dáta ľahko izolujú a identifikujú. Každá skupina dát sa nazýva súbor.
 
 \subsection{FAT - File Allocation Table}
 FAT je súborový systém vyvinutý pre osobné počítače. Pôvodne vyvinutý v roku 1977 na použitie na disketách, neskôr bol prispôsobený na použitie na pevných diskoch a iných zariadeniach. Často je z dôvodov kompatibility podporovaný súčasnými operačnými systémami pre osobné počítače a mnohými mobilnými zariadeniami a ``embed'' systémami. FAT ako taký je už v dnešnej dobe nepoužívaný, ale jeho odnože (FAT32, exFAT) sa doteraz používajú napríklad v prenosných médiách ako USB kľúče, SD karty a podobne.
@@ -131,7 +131,7 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 	\captionsetup{justification=centering,margin=2cm}
 	\includegraphics[width=\linewidth]{./images/exfat-file-system-structure.png}
 	\centering
-	\caption{Štruktúra súborového systému FAT a FAT32 \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
+	\caption{Štruktúra súborového systému exFAT \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
 
 \setstretch{1.0}
@@ -174,7 +174,7 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 
 
 \subsection{NTFS - New Technology File System}
-NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{angl. New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{angl. Hard Disk Drive} a neskôr aj pre SSD\footnote{angl. Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne. 
+NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{Hard Disk Drive} a neskôr aj pre SSD\footnote{Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne. 
 
 
 Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT, ktorý bol jeho predchodcom v ére operačného systému MS DOS.
