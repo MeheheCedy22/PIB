@@ -179,6 +179,8 @@ NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bo
 
 Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT, ktorý bol jeho predchodcom v ére operačného systému MS DOS.
 
+Ide o žurnálový súborový system, čo znamená, že všetky zmeny na disku sú zaznamenané v tzv. žurnáli. V prípade výpadku napájania alebo zlyhania systému je možné rýchlo obnoviť dáta na disku.
+
 \subsubsection{Štruktúra NTFS}
 Novo naformátovaný disk s NTFS vyzerá nasledovne:
 
@@ -246,6 +248,41 @@ Zameriava na konzistenciu súborového systému, takže v prípade výpadku nap�
 
 \subsection{ext - Extended File System}
 
+\subsubsection{Štruktúra ext4}
+Novo naformátovaný disk s ext4 vyzerá nasledovne:
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=\linewidth]{./images/ext-file-system-structure.png}
+	\centering
+	\caption{Štruktúra súborového systému ext4 \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
+\end{figure}
+
+% bulleted list plus riadkovanie iba na danu cas textu
+\setstretch{1.0}
+\begin{itemize}
+	\item 
+		\begin{itemize}
+			\item 
+		\end{itemize}
+	\item 
+		\begin{itemize}
+			\item 
+		\end{itemize}
+	\item 
+		\begin{itemize}
+			\item 
+		\end{itemize}
+	\item 
+		\begin{itemize}
+			\item 
+		\end{itemize}
+	\item 
+		\begin{itemize}
+			\item 
+		\end{itemize}
+\end{itemize}
 
 % ----------------- 3. kapitola -----------------
 
@@ -258,16 +295,15 @@ Zameriava na konzistenciu súborového systému, takže v prípade výpadku nap�
 \subsection{(Pripadne Nejaký iný nástroj..)}
 
 
-\section{Analýza nástroja na obnovu údajov - testdisk (táto sekcia tu asi nebude, keďže to už mám vyššie)}
-
 \section{Experimentovanie s nástrojom testdisk}
 
 
 \subsection{Zmazanie a obnova súborov}
+podarilo uplne v pohode pri fat32 a exfat, pri ntfs bol problem asi to ze to bezalo na linuxe ale podarilo sa to obnovit cez inodes ale bolo treba premenovat subor aj s koncovkou a nastavit ownership nad nim, z ext4 sa nepodarilo z nejakoho dovodu, pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
 
 
 \subsection{Zmazanie a obnova partície}
-
+zvladol vsetky obnovit, dokonca aj ked bolo viacej particii na jednom disku a kazda mala iný filesystem.
 
 \section{Výsledky experimentov}
 sem napisat vysledky a nakoniec napisat toto: ak spravne naformatujeme disk tak ze ho pomocou nejakeho nastroja prepiseme cey viacej krat nahodnymi datami tak je mozne ho predat bez obavy ze sa z neho daju obnovit data ktore tam boli pred tym, je to preto lebo pri vymazavani sa v "mazu" v podstate iba zaznami o danych suboroch repsketive sa oznacia ze tam je teraz volne miesto a moze sa tam zapisovat
