@@ -9,8 +9,8 @@ projekt.fdb_latexmk
 projekt.synctex.gz
 projekt.synctex(busy)
 
-docs\project-specification\~$ecifikacia-projektu.docx
-docs\progress-reports\1\~$ProgressReport1-Cederle-Marek.pptx
-docs\progress-reports\2\~$ProgressReport2-Cederle-Marek.pptx
+docs/progress-reports/1/~$ProgressReport1-Cederle-Marek.pptx
+docs/progress-reports/2/~$ProgressReport2-Cederle-Marek.pptx
+docs/project-specification/~$ecifikacia-projektu.docx
 
 TODO.txt
