@@ -85,7 +85,7 @@ Novo naformátovaný disk s FAT vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/fat-file-system-structure.png}
+	\includegraphics[width=\linewidth]{./images/file_system_structure/fat-file-system-structure.png}
 	\centering
 	\caption{Štruktúra súborového systému FAT a FAT32 \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -130,7 +130,7 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/exfat-file-system-structure.png} %scale=0.64
+	\includegraphics[width=\linewidth]{./images/file_system_structure/exfat-file-system-structure.png} %scale=0.64
 	\centering
 	\caption{Štruktúra súborového systému exFAT \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -230,7 +230,7 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/ntfs-file-system-structure.png}
+	\includegraphics[width=\linewidth]{./images/file_system_structure/ntfs-file-system-structure.png}
 	\centering
 	\caption{Štruktúra súborového systému NTFS \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -293,7 +293,7 @@ Novo naformátovaný disk s ext4 vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/ext-file-system-structure.png}
+	\includegraphics[width=\linewidth]{./images/file_system_structure/ext-file-system-structure.png}
 	\centering
 	\caption{Štruktúra súborového systému ext4 \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -301,25 +301,36 @@ Novo naformátovaný disk s ext4 vyzerá nasledovne:
 % bulleted list plus riadkovanie iba na danu cas textu
 \begin{spacing}{1.0}
 \begin{itemize}
-	\item 
+	\item Boot Block
 		\begin{itemize}
-			\item 
+			\item Informácie o bootovaní
 		\end{itemize}
-	\item 
+	\item Block group
 		\begin{itemize}
-			\item 
-		\end{itemize}
-	\item 
-		\begin{itemize}
-			\item 
-		\end{itemize}
-	\item 
-		\begin{itemize}
-			\item 
-		\end{itemize}
-	\item 
-		\begin{itemize}
-			\item 
+			\item Super block
+				\begin{itemize}
+					\item Superblok sa nachádza na začiatku súborového systému a obsahuje metadáta o súborovom systéme vrátane jeho veľkosti, veľkosti bloku, počtu inódov a ďalších parametrov. Slúži ako hlavný riadiaci blok pre súborový systém
+				\end{itemize}
+			\item Group descriptors
+				\begin{itemize}
+					\item Skupinové deskriptory obsahujú metadáta pre danú skupinu
+				\end{itemize}
+			\item Data block Bitmap
+				\begin{itemize}
+					\item Sleduje status blokov pre danú skupinu
+				\end{itemize}
+			\item Inode Bitmap
+				\begin{itemize}
+					\item Sleduje status inodov pre danú skupinu
+				\end{itemize}
+			\item Inode Table
+				\begin{itemize}
+					\item Obsahujú metadáta a atribúty, čo sa týka oprávnení a ďaľších informácií pre každý súbor a adresár v danej skupine
+				\end{itemize}
+			\item Data blocks
+				\begin{itemize}
+					\item Obsahujú dané dáta
+				\end{itemize}
 		\end{itemize}
 \end{itemize}
 \end{spacing}
