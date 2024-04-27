@@ -130,7 +130,7 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[scale=0.64]{./images/exfat-file-system-structure.png}
+	\includegraphics[width=\linewidth]{./images/exfat-file-system-structure.png} %scale=0.64
 	\centering
 	\caption{Štruktúra súborového systému exFAT \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -184,11 +184,38 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 \end{spacing}
 
 \subsubsection{Výhody a nevýhody FAT32 a exFAT}
-% dorobit
+
 % tabulka pre FAT32
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\multicolumn{2}{|c|}{\textbf{FAT32}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Výhody}} & \multicolumn{1}{c|}{\textbf{Nevýhody}} \\ \hline
+Vysoko kompatibilný s rôznymi operačnými systémami. & Nedokáže uložiť súbor, ktorý je väčší ako 4GB. \\ \hline
+Je kompatibilný s väčšinou prenosných úložných zariadení. & Nemá natívne šifrovanie súborov a chýbajú mu prístupové povolenia prítomné v moderných súborových systémoch. \\ \hline
+& FAT32 je pomalší na čítanie a zápis dát v porovnaní s modernými súborovými systémami. \\ \hline
+\end{tabularx}
+\centering
+\captionsetup{justification=centering,margin=2cm}
+\caption{Výhody a nevýhody súborového systému FAT32 \\ Zdroj: https://superops.com/ntfs-vs-fat32}
+\end{table}
 
 % tabulka pre exFAT
-
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\multicolumn{2}{|c|}{\textbf{exFAT}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Výhody}} & \multicolumn{1}{c|}{\textbf{Nevýhody}} \\ \hline
+Podporuje súbory väčšie ako 4GB. & Absencia žurnálovania a kompresie dát. \\ \hline
+Je predvoleným systémom na SD kartách s vysokou kapacitou & Nemá podporu pre staršie operačné systémy bez špeciálnych ovladačov. \\ \hline
+Veľkosť partície je v podstate neobmedzená. & Nemá natívnu podporu pre šifrovanie dát. \\ \hline
+Efektívenejší ako FAT32. & Nie je efektívnejší ako NTFS alebo ext. \\ \hline
+Podpora všetkých majoritných operačných systémov. & Nie je vhodný pre viac-používateľské aplikácie z dôvody vyššej fragmentácie. \\ \hline
+\end{tabularx}
+\centering
+\captionsetup{justification=centering,margin=2cm}
+\caption{Výhody a nevýhody súborového systému exFAT \\ Zdroj: https://www.profolus.com/topics/exfat-advantages-disadvantages-extensible-fat/}
+\end{table}
 
 \subsection{NTFS - New Technology File System}
 NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{Hard Disk Drive} a neskôr aj pre SSD\footnote{Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne. 
