@@ -77,7 +77,7 @@ Súborový systém je metóda a dátová štruktúra, ktorú operačný systém 
 FAT je súborový systém vyvinutý pre osobné počítače. Pôvodne vyvinutý v roku 1977 na použitie na disketách, neskôr bol prispôsobený na použitie na pevných diskoch a iných zariadeniach. Často je z dôvodov kompatibility podporovaný súčasnými operačnými systémami pre osobné počítače a mnohými mobilnými zariadeniami a ``embed'' systémami. FAT ako taký je už v dnešnej dobe nepoužívaný, ale jeho odnože (FAT32, exFAT) sa doteraz používajú napríklad v prenosných médiách ako USB kľúče, SD karty a podobne.
 
 \subsubsection{FAT32}
-Najpokročilejšia verzia súborového systému FAT je FAT32. S FAT32 sa Microsoft snažil prekonať obmedzenia FAT16 a prispôsobiť sa väčším možným partíciám. Existuje už od Windowsu 95 a naďalej zostáva populárny, pretože je vysoko kompatibilný s väčšinou operačných systémov (GNU+Linux, MAC) a prenosných zariadení. FAT32 podporuje súbory menšie ako 4 GB a partície s maximálnou veľkosťou 2 TB.
+Najpokročilejšia verzia súborového systému FAT je FAT32. S FAT32 sa Microsoft snažil prekonať obmedzenia FAT16 a prispôsobiť sa väčším možným partíciám. Existuje už od Windowsu 95 a naďalej zostáva populárny, pretože je vysoko kompatibilný s väčšinou operačných systémov (GNU+Linux, MAC) a prenosných zariadení. FAT32 podporuje súbory do 4 GB a partície s maximálnou veľkosťou 2 TB. Používa sa prevažne pre EFI partície a prenosné médiá s kapacitou do 32GB.
 
 \subsubsection{Štruktúra FAT a FAT32}
 Novo naformátovaný disk s FAT vyzerá nasledovne:
@@ -116,9 +116,9 @@ Novo naformátovaný disk s FAT vyzerá nasledovne:
 \end{spacing}
 
 \subsubsection{exFAT - Extensible File Allocation Table}
-exFAT je súborový systém predstavený spoločnosťou Microsoft v roku 2006 a optimalizovaný pre flash pamäte, ako sú USB flash disky a SD karty. exFAT bol proprietárny do 28. augusta 2019, kedy Microsoft zverejnil jeho špecifikáciu. Microsoft však stále vlastní patenty na niekoľko častí svojho dizajnu.
+exFAT je súborový systém predstavený spoločnosťou Microsoft v roku 2006 a optimalizovaný pre flash pamäte, ako sú USB flash disky a SD karty. exFAT bol proprietárny do 28. augusta 2019, kedy Microsoft zverejnil jeho špecifikáciu. Microsoft však stále vlastní patenty na niekoľko častí svojho dizajnu. To spôosobilo rozšírenie jeho podpory medzi rôzne operačné systémy.
 
-exFAT možno použiť tam, kde NTFS nie je vhodným riešením (kvôli vysokej réžii\footnote{angl. overhead}), ale kde je potrebná podpora súborov väčších ako 4 GB.
+exFAT možno použiť tam, kde NTFS nie je vhodným riešením (kvôli vysokej réžii\footnote{angl. overhead}), ale kde je potrebná podpora súborov väčších ako 4 GB. Podporuje rádovo väčšiu veľkosť súborov ako FAT32 (ExaByty).
 
 exFAT bol prijatý SD Association ako predvolený súborový systém pre karty SDXC väčšie ako 32 GB.
 
@@ -218,10 +218,9 @@ Podpora všetkých majoritných operačných systémov. & Nie je vhodný pre via
 \end{table}
 
 \subsection{NTFS - New Technology File System}
-NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{Hard Disk Drive} a neskôr aj pre SSD\footnote{Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne. 
+NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{Hard Disk Drive} a neskôr aj pre SSD\footnote{Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne.
 
-
-Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT, ktorý bol jeho predchodcom v ére operačného systému MS DOS.
+Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT, ktorý bol jeho predchodcom v ére operačného systému MS DOS. Natívne podporuje šifrovanie a kompresiu súborov. Podporuje aj veľmi veľké súbory a partície.
 
 Ide o žurnálový súborový system, čo znamená, že všetky zmeny na disku sú zaznamenané v tzv. žurnáli. V prípade výpadku napájania alebo zlyhania systému je možné rýchlo obnoviť dáta na disku.
 
@@ -263,17 +262,11 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 \end{spacing}
 
 \subsubsection{Bezpečnosť NTFS}
-Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým lokálnym súborom a priečinkom. Inými slovami, dôverný súbor môžete nastaviť tak, aby bol pre niektorých iných používateľov nedostupný.
-
-% Mozno este toto pridat
-% Pouziva ACL encryption a podobne
-% pridat sem o EFS (Encrypting File System) z https://www.ntfs.com/ntfs-encrypted.htm
-% obnova dát https://www.ntfs.com/data-integrity.htm
-
+Ako som vyššie spomenul tak NTFS natívne podporuje šifrovanie súborov, priečinkov ale aj celých partícií. Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým lokálnym súborom a priečinkom. Inými slovami, dôverný súbor môžete nastaviť tak, aby bol pre niektorých iných používateľov nedostupný. Táto metóda sa nazýva riadenie úrovne prístupu (ACL).
 
 \subsubsection{Výhody a nevýhody NTFS}
 
-% tabulka s výhodami a nevýhodami
+% tabulka s výhodami a nevýhodami NTFS
 \begin{table}[H]
 \begin{tabularx}{\linewidth}{|X|X|}
 \hline
@@ -292,6 +285,7 @@ Zameriava na konzistenciu súborového systému, takže v prípade výpadku nap�
 % ------------- koniec tabulky -------------
 
 \subsection{ext - Extended File System}
+Ext je súborový systém používaný v GNU+Linux distribúciách. 
 
 \subsubsection{Štruktúra ext4}
 Novo naformátovaný disk s ext4 vyzerá nasledovne:
