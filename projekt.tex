@@ -130,40 +130,55 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/exfat-file-system-structure.png}
+	\includegraphics[scale=0.64]{./images/exfat-file-system-structure.png}
 	\centering
 	\caption{Štruktúra súborového systému exFAT \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
 
 \begin{spacing}{1.0}
 \begin{itemize}
-	\item Main Boot Region
+	\item Boot Region
 		\begin{itemize}
-			\item Informácie potrebné pre bootovanie.
+			\item Main Boot Region
+			\begin{itemize}
+				\item Informácie potrebné pre bootovanie.
+			\end{itemize}
+		\item Backup Boot Region
+			\begin{itemize}
+				\item Záloha Main Boot Region.
+			\end{itemize}
 		\end{itemize}
-	\item Backup Boot Region
+
+	\item FAT Region
 		\begin{itemize}
-			\item Záloha Main Boot Region.
+			\item FAT Alignment
+				\begin{itemize}
+					\item FAT offset a veľkosť.
+				\end{itemize}
+			\item 1st FAT
+				\begin{itemize}
+					\item FAT tabuľka obsahujúca informácie o súboroch a ich umiestnení na disku.
+				\end{itemize}
+			\item 2nd FAT
+				\begin{itemize}
+					\item Záloha FAT tabuľky.
+				\end{itemize}
 		\end{itemize}
-	\item FAT Alignment
+
+	\item Data Region
 		\begin{itemize}
-			\item FAT offset a veľkosť.
-		\end{itemize}
-	\item 1st FAT
-		\begin{itemize}
-			\item FAT tabuľka obsahujúca informácie o súboroch a ich umiestnení na disku.
-		\end{itemize}
-	\item 2nd FAT
-		\begin{itemize}
-			\item Záloha FAT tabuľky.
-		\end{itemize}
-	\item Cluster Heap Alignment
-		\begin{itemize}
-			\item Cluster heap offset a veľkosť.
-		\end{itemize}
-	\item Cluster Heap
-		\begin{itemize}
-			\item Obsahuje samotné dáta súborov.
+			\item Cluster Heap Alignment
+				\begin{itemize}
+					\item Cluster heap offset a veľkosť.
+				\end{itemize}
+			\item Cluster Heap
+				\begin{itemize}
+					\item Obsahuje samotné dáta súborov.
+				\end{itemize}
+			\item Excess Space
+				\begin{itemize}
+					\item Zvyšok priestoru na disku.
+				\end{itemize}
 		\end{itemize}
 \end{itemize}
 \end{spacing}
