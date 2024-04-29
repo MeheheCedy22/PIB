@@ -285,7 +285,14 @@ Zameriava na konzistenciu súborového systému, takže v prípade výpadku nap�
 % ------------- koniec tabulky -------------
 
 \subsection{ext - Extended File System}
-Ext je súborový systém používaný v GNU+Linux distribúciách. 
+ext bol implementovaný v apríli 1992 ako prvý súborový systém vytvorený špeciálne pre jadro Linuxu. Má štruktúru metadát inšpirovanú tradičnými princípmi súborového systému Unix a navrhol ho Rémy Card, aby prekonal určité obmedzenia súborového systému MINIX. Bola to prvá implementácia, ktorá využívala virtuálny súborový systém (VFS\footnote{Virtual File System}), ktorého podpora bola pridaná do jadra Linuxu vo verzii 0.96c, a dokázala spracovať súborové systémy s veľkosťou až 2 GB.
+
+ext bol prvým z radu rozšírených súborových systémov. V roku 1993 ho nahradili systémy ext2 a Xiafs, ktoré si istý čas konkurovali, ale ext2 zvíťazil vďaka svojej dlhodobej životaschopnosti: ext2 odstránil problémy ext, ako napríklad nemennosť inódov a fragmentáciu.
+
+Ďaľej sa tento súborvý systém rozširoval a aktualizoval. Z tohto vznikli novšie verzie ext3 a ext4.
+
+\subsubsection{ext4}
+Podobne ako pri NTFS aj ext4 je tzv. žurnálový súborový systém. Je veľmi abstraktný čo je výhodou pre software pretože sa software developery nemusia zaoberať priveľa súborovým systémom a ich program bz mal fungovať na každom rovnako. Abstrakcia znamená že všetok hardware (disky, a pod.) sú v ext4 reprezentované ako súbor. Má až takú úroveň abstrakcia že vlastne všetko je v podstate súbor. Používa sa ako predvolený súborový systém pre disky na distribúciách založených na Debian a Ubuntu. Taktiež je spätne kombatibilný s ext3.
 
 \subsubsection{Štruktúra ext4}
 Novo naformátovaný disk s ext4 vyzerá nasledovne:
@@ -334,6 +341,28 @@ Novo naformátovaný disk s ext4 vyzerá nasledovne:
 		\end{itemize}
 \end{itemize}
 \end{spacing}
+
+\subsubsection{Výhody a nevýhody ext4}
+
+% tabulka s výhodami a nevýhodami ext4
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Výhody}} & \multicolumn{1}{c|}{\textbf{Nevýhody}} \\ \hline
+Podporuje najväčšiu individuálnu veľkosť súboru a veľkosť zväzku súborového systému. & Neposkytuje zabezpečenie dát. \\ \hline
+Podporuje všetky znaky okrem NULL a '/.' & Ťažké vytvoriť snapshot na inom zväzku. \\ \hline
+Môžete previesť súborový systém Ext3 na Ext4. & Využíva viacej miesta na disku. \\ \hline
+Zahŕňa pokročilé funkcie ako rozšírenie, indexovanie adresárov, oneskorenú alokáciu a defragmentáciu. &  \\ \hline
+Podporuje neobmedzený počet podadresárov. &  \\ \hline
+Používa timestamp v nanosekundách. &  \\ \hline
+Podporuje predalokácia pre rozsiahle súbory. &  \\ \hline
+Podporuje viacnásobnú alokáciu blokov. &  \\ \hline
+\end{tabularx}
+\centering
+\captionsetup{justification=centering,margin=2cm}
+\caption{Výhody a nevýhody súborového systému Ext4 \\ Zdroj: https://www.easeus.com/partition-master/ext2-ext3-ext4-file-system-format-and-difference.html}
+\end{table}
 
 % ----------------- 3. kapitola -----------------
 
