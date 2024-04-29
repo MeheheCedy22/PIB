@@ -367,13 +367,66 @@ Podporuje viacnásobnú alokáciu blokov. &  \\ \hline
 % ----------------- 3. kapitola -----------------
 
 \section{Nástroje na obnovu údajov}
+Existuje mnoho nástrojov na obnovu údajov. Či už ide o špecializované nástroje pre obnovu fotiek alebo multimediálnych súborov, alebo o univerzálne nástroje, ktoré dokážu obnoviť akékoľvek súbory. V tejto kapitole sa pozrieme na niektoré z nich.
+
+\begin{spacing}{1.0}
+\begin{itemize}
+	\item Recuva
+		\begin{itemize}
+			\item Široko používaný a ľahko ovládateľný nástroj s pokročilými možnosťami skenovania pre rôzne typy súborov. Dostuoný pre platofrmu Windows.
+		\end{itemize}
+	\item PhotoRec
+		\begin{itemize}
+			\item Špecializovaný na obnovenie stratených obrázkov a multimediálnych súborov z rôznych úložných zariadení. Dostupný pre Windows, MacOS, Linux a ďalšie.
+		\end{itemize}
+	\item Testdisk
+		\begin{itemize}
+			\item Je od rovnakého vývojára ako PhotoRec. Dokáže obnoviť rôzne druhy súborov. Je univerzálny. Nielen obnovuje vymazané súbory, ale tiež pomáha opraviť tabuľku oddielov a boot sektory. Dostupný pre Windows, MacOS, Linux a ďalšie.
+		\end{itemize}
+	\item Disk Drill
+		\begin{itemize}
+			\item Veľmi podobný nástroj ako Recuva. Narozdiel od Recuvy, ktorá sa zaoberá skorej funkcionalitou, Disk Drill sa zameriava na používateľský zážitok (UX\footnote{User Experience}). Dostupný pre Windows, MacOS.
+		\end{itemize}
+\end{itemize}
+\end{spacing}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{.15\textwidth}
+		\centering
+        \includegraphics[width=\linewidth]{./images/tools-avatars/recuva.png}
+		\captionsetup{justification=centering}
+        \caption{Recuva}
+    \end{minipage}\hfill
+	\centering
+	\begin{minipage}{.15\textwidth}
+		\centering
+        \includegraphics[width=\linewidth]{./images/tools-avatars/photo_rec.png}
+		\captionsetup{justification=centering}
+        \caption{PhotoRec}
+    \end{minipage}\hfill
+    \centering
+    \begin{minipage}{.15\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./images/tools-avatars/testdisk.png}
+		\captionsetup{justification=centering}
+        \caption{Testdisk}
+    \end{minipage}\hfill
+    \begin{minipage}{.15\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{./images/tools-avatars/disk_drill.png}
+		\captionsetup{justification=centering}
+        \caption{Disk Drill}
+    \end{minipage}\hfill
+\end{figure}
 
 
 \subsection{Testdisk}
+Prečo som si vybral práve testdisk? Pretože je univerzálny, dokáže obnoviť rôzne druhy súborov. Taktiež vie opraviť tabuľku oddielov a boot sektory. Je crossplatform\footnote{Podporuje viacero operačných systémov} a zároveň je FOSS\footnote{Free \& Open Source Software --- zadarmo s voľne šíriteľným zdrojovým kódom}. Podporuje viacero typov partition table (MBR\footnote{Master Boot Record}, GPT\footnote{GUID Partition Table}). Zároveň podporuje viacero súborových systémov či už ide o FAT32, exFAT ale aj NTFS a ext. Má jednoduché rozhranie a nie je náročný na systém.
 
 
 \section{Experimentovanie s nástrojom testdisk}
-
+Najskôr bolo potrebné si pripraviť testovacie prostredie. Uvažoval som aj nad testovaním na fyzickom disku ale keďže na mojom počítači mám operačný systém Windows a ten nedokáže pracovať s diskami, ktoré sú naformátované na ext, tak som sa rozhodol, že budem pracovať na virtuálnom stroji (VM\footnote{Virtual Machine}). Použil som program VirtualBox, ktorý je zadarmo. Na VM som nainštaloval Ubuntu vtedy najnovšiu verziu distribúcie Arch. Najprv som si nastavil prostredie aby sa mi lepšie pracovalo. Následne som si stiahol potrebné nástroje a dependencies. Potom som vytvoril virtuálne disky, ktorý som najskôr naformátoval a neskôr pripojil (mountol) do systému. Po tomto sa mohlo začať s experimentovaním.
 
 \subsection{Zmazanie a obnova súborov}
 podarilo uplne v pohode pri fat32 a exfat, pri ntfs bol problem asi to ze to bezalo na linuxe ale podarilo sa to obnovit cez inodes ale bolo treba premenovat subor aj s koncovkou a nastavit ownership nad nim, z ext4 sa nepodarilo z nejakoho dovodu, pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
