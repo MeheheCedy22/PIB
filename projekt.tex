@@ -426,9 +426,45 @@ Prečo som si vybral práve testdisk? Pretože je univerzálny, dokáže obnovi�
 
 
 \section{Experimentovanie s nástrojom testdisk}
-Najskôr bolo potrebné si pripraviť testovacie prostredie. Uvažoval som aj nad testovaním na fyzickom disku ale keďže na mojom počítači mám operačný systém Windows a ten nedokáže pracovať s diskami, ktoré sú naformátované na ext, tak som sa rozhodol, že budem pracovať na virtuálnom stroji (VM\footnote{Virtual Machine}). Použil som program VirtualBox, ktorý je zadarmo. Na VM som nainštaloval Ubuntu vtedy najnovšiu verziu distribúcie Arch. Najprv som si nastavil prostredie aby sa mi lepšie pracovalo. Následne som si stiahol potrebné nástroje a dependencies. Potom som vytvoril virtuálne disky, ktorý som najskôr naformátoval a neskôr pripojil (mountol) do systému. Po tomto sa mohlo začať s experimentovaním.
+
+% fixnut ako toto znie a rozmiestnit obrazky
+
+Najskôr bolo potrebné si pripraviť testovacie prostredie. Uvažoval som aj nad testovaním na fyzickom disku, ale keďže na mojom počítači mám operačný systém Windows a ten nedokáže pracovať s diskami, ktoré sú naformátované na ext, tak som sa rozhodol, že budem pracovať na virtuálnom stroji (VM\footnote{Virtual Machine}). Použil som program VirtualBox, ktorý je zadarmo. Na VM som nainštaloval vtedy najnovšiu verziu distribúcie Arch. Najprv som si nastavil prostredie aby sa mi lepšie pracovalo. Následne som si stiahol potrebné nástroje a dependencies. Potom som vytvoril virtuálne disky, ktorý som najskôr naformátoval a neskôr pripojil (mountol) do systému. Po tomto sa mohlo začať s experimentovaním.
+
+Najpr som testoval tak, že som mal jeden disk o veľkosti 1 GB a mal 4 partície pre každý súborový systém, ktorému som sa chcel venovať (FAT32, exFAT, NTFS, ext4). Každá partícia mala veľkosť 200 MB. Neskôr kvôli komplikáciám s ext4 som skúsil aj samostatne jeden disk pre každý súborový systém.
+
+Začal som s tým, že som si stiahol súbor dostatočne veľký, aby pokrýval nadpolovičnú vačšinu z partície. Na toto som využil obrázok od NASA JWST\footnote{James Webb Space Telescope}, ktorý mal veľkosť 130MB.
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/NASA-JWST.png}
+	\centering
+	\caption{Testovací obrázok}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/gparted-setup.png}
+	\centering
+	\caption{Gparted --- úvodné nastavenie diskov}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/disk-mount-gnome-disks.png}
+	\centering
+	\caption{Mountnutie diskov/partícií pomocou Gnome Disks}
+\end{figure}
+
 
 \subsection{Zmazanie a obnova súborov}
+Môj 
+
+
+
 podarilo uplne v pohode pri fat32 a exfat, pri ntfs bol problem asi to ze to bezalo na linuxe ale podarilo sa to obnovit cez inodes ale bolo treba premenovat subor aj s koncovkou a nastavit ownership nad nim, z ext4 sa nepodarilo z nejakoho dovodu, pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
 
 
