@@ -433,7 +433,7 @@ Najskôr bolo potrebné si pripraviť testovacie prostredie. Uvažoval som aj na
 
 Najpr som testoval tak, že som mal jeden disk o veľkosti 1 GB a mal 4 partície pre každý súborový systém, ktorému som sa chcel venovať (FAT32, exFAT, NTFS, ext4). Každá partícia mala veľkosť 200 MB. Neskôr kvôli komplikáciám s ext4 som skúsil aj samostatne jeden disk pre každý súborový systém.
 
-Začal som s tým, že som si stiahol súbor dostatočne veľký, aby pokrýval nadpolovičnú vačšinu z partície. Na toto som využil obrázok od NASA JWST\footnote{James Webb Space Telescope}, ktorý mal veľkosť 130MB.
+Stiahol som si testovací súbor dostatočne veľký na to, aby pokrýval nadpolovičnú vačšinu z partície. Na toto som využil obrázok od NASA JWST\footnote{James Webb Space Telescope}, ktorý mal veľkosť 130MB.
 
 \begin{figure}[H]
 	\centering
@@ -461,7 +461,24 @@ Začal som s tým, že som si stiahol súbor dostatočne veľký, aby pokrýval 
 
 
 \subsection{Zmazanie a obnova súborov}
-Môj 
+Najskôr som naplnil všetky partície súborom.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/naplnenie_particii_lsblk.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Zobrazenie naplnených partícií --- lsblk}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{./images/testdisk_testing/naplnenie_particii_lss.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Zobrazenie naplnených partícií --- ls}
+\end{figure}
+
 
 
 
