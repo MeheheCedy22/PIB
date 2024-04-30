@@ -48,6 +48,7 @@
 
 \tableofcontents
 \vspace*{\fill}
+\pagebreak
 
 % ----------------- 1. kapitola -----------------
 
@@ -612,7 +613,7 @@ Na druhej vizualizácii je vidieť kde už pokračujú pozostatky dát z obrázk
 Táto skutočnosť nastáva z dôvodu, že pri mazaní súborov z disku sa vymaže iba záznam o súbore a nie sám súbor. V skutočnosti sa ani sám záznam priamo nevymaže ale iba sa označí že na miesto, ktoré mal disk alokovaný pre seba je teraz možné znova zapisovať. Preto je možné dáta z diskov obnoviť ale iba v prípade, že nebudeme zapisovať na daný disk. Keď sa však na miesto zmazaného súboru zapíše iný súbor, tak sa dáta pôvodného súboru prepíšu a týmto sa stane neobnoviteľným.
 
 
-\subsection{Zmazanie a obnova partície}
+\subsection{Zmazanie a obnova partícií}
 Po predošlom experimentovaní som na záver pomocou programu Gparted vymazal všetky partície.
 
 \begin{figure}[H]
@@ -654,10 +655,10 @@ Zo súborového systému ext4 sa mi nepodarilo obnoviť súbor pretože ho testd
 \subsection{Prepísanie zmazaných súborov}
 Z tohto experimentu nám vyplýva, že ak sa nám niekedy náhodou stane že sme vymazali niečo čo sme nechceli, tak je treba čo najskôr prestať zapisovať na disk. To môžeme docieliť kompletným vypnutím počítača. Ak sa nám podarí zastaviť zápis na disk, tak je veľká šanca že sa nám podarí obnoviť zmazané súbory. Ak však začneme zapisovať na disk, tak je šanca že sa nám nepodarí obnoviť súbory, pretože sa dáta prepíšu.
 
-\subsection{Zmazanie partície}
+\subsection{Zmazanie partícií}
 Pri obnove zmazaných partícií som nemal žiadne problémy. Testdisk ich zobrazil a následne som ich mohol obnoviť. V prípade, že by som mal dáta na týchto partíciách, tak by som ich mohol obnoviť. Tento proces by bol podobný ako pri obnove zmazaných súborov.
 
-\section{Správne zmazanie dát a formátovanie disku}
+\section{Bezpečné zmazanie dát z disku}
 Prikaz shred, funguje vsak iba na HDD lebo SSD pouzivaju TRIM (da sa asi vypnut ?) ktory vlastne robi wear and tear mechanizmus aby sa disk opotrebovaval rovnomerne a preto sa data ukladaju náhodne na rôzne bunky a nie sekvenčne ako na HDD aby to bolo rýchlejšie lebo pri ssd na tom nezalezi
 
 sem napisat: ak spravne naformatujeme disk tak ze ho pomocou nejakeho nastroja prepiseme cey viacej krat nahodnymi datami tak je mozne ho predat bez obavy ze sa z neho daju obnovit data ktore tam boli pred tym, je to preto lebo pri vymazavani sa v "mazu" v podstate iba zaznami o danych suboroch repsketive sa oznacia ze tam je teraz volne miesto a moze sa tam zapisovat
@@ -671,7 +672,7 @@ ak sa nam stalo ze sme omylom vymazali particiu alebo subory ktore sme nechceli 
 pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
 
 
-
+\pagebreak
 \bibliography{literatura}
 \bibliographystyle{unsrtnat}
 \end{document}
