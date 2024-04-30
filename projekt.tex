@@ -564,30 +564,37 @@ Následne vypneme nástroj a zmažeme súbor z každej partície s tým, že zá
 	\caption{Vymazanie súborov}
 \end{figure}
 
-
-
+Potom si opäť spustíme nástroj testdisk s tým že urobíme rovnaké kroky ako boli pred chvíľou spomenuté. Následne si vyberieme možnosť ``undelete'' a nástroj nám zobrazí zmazaný súbor. Všimnime si, že teraz je súbor označený červenou farbou. Následne si ho zvolíme a stlačíme malé ``c'' na jeho skopírovanie.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_deleted_file_recovery.png}
+	\includegraphics[scale=0.7]{./images/testdisk_testing/testdisk_deleted_file_recovery.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Testdisk --- obnova zmazaných súborov}
 \end{figure}
 
-
-
+Následne nám nástroj zobrazí možnosť kam chceme súbor skopírovať. Vyberieme si cestu a stlačíme veľké ``C''. Potom nám nástroj zobrazí informáciu o tom, či bol súbor úspešne skopírovaný.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.9]{./images/testdisk_testing/testdisk_deleted_file_recovery2.png}
+	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_deleted_file_recovery2.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Testdisk --- kopírovanie zmazaného súboru}
 \end{figure}
 
+Tento proces zopakujeme na všetkých partíciách nášho testovacieho disku.
 
 
+\subsection{Zmazanie a obnova partície}
+zvladol vsetky obnovit, dokonca aj ked bolo viacej particii na jednom disku a kazda mala iný filesystem.
+
+\section{Výsledky experimentov}
+\subsection{Zmazanie súborov}
+Pri práci s FAT32 a exFAT neboli problémy a súbor sa mi podarilo v poriadku obnoviť.
+
+V prípado NTFS nastali komplikácie. Testdisk hlásil, že súborový systém je poškodený. Vtedy som zvolil možnosť ``Analyse'', ktorá ho opravila a potom po reštarte VM a spustení testdisku som mohol pokračovať v obnove zmazaných súborov. Pri NTFS sa to riešilo cez inodes a pri obnove bolo treba premenovať súbor aj s koncovkou a nastaviť nad ním vlastníctvo\footnote{ownership}. Táto komplikácia bola pravdepodobne spôsobená tým, že som pracoval na virtuálnom stroji a nie na fyzickom disku. Prípadne preto, že som pracoval na Linuxe a nie na Windows.
 
 \begin{figure}[H]
 	\centering
@@ -597,29 +604,10 @@ Následne vypneme nástroj a zmažeme súbor z každej partície s tým, že zá
 	\caption{Testdisk --- obnova zmazaných súborov --- NTFS}
 \end{figure}
 
+Zo súborového systému ext4 sa mi nepodarilo obnoviť súbor pretože ho testdisk nezobrazoval. Neskôr som sa v dokumentácii dočítal, že testdisk podporuje ext2 čo mi však prišlo zváštne. Každopádne som tento proces skúsil na disku, kde bola jedna partícia naformátovaná na ext2 avšak aj v tomto prípade mi zmazaný súbor nezobrazovalo. Pravdepodobne to bolo spôsobené tým, že som pracoval na virtuálnom prostredí.
 
+\subsection{Zmazanie partície}
 
-
-
-
-
-
-
-
-
-
-
-
-
---------------------------------------------------------------------------------------------------------------
-
-podarilo uplne v pohode pri fat32 a exfat, pri ntfs bol problem asi to ze to bezalo na linuxe ale podarilo sa to obnovit cez inodes ale bolo treba premenovat subor aj s koncovkou a nastavit ownership nad nim, z ext4 sa nepodarilo z nejakoho dovodu, pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
-
-
-\subsection{Zmazanie a obnova partície}
-zvladol vsetky obnovit, dokonca aj ked bolo viacej particii na jednom disku a kazda mala iný filesystem.
-
-\section{Výsledky experimentov}
 sem napisat vysledky a nakoniec napisat toto: ak spravne naformatujeme disk tak ze ho pomocou nejakeho nastroja prepiseme cey viacej krat nahodnymi datami tak je mozne ho predat bez obavy ze sa z neho daju obnovit data ktore tam boli pred tym, je to preto lebo pri vymazavani sa v "mazu" v podstate iba zaznami o danych suboroch repsketive sa oznacia ze tam je teraz volne miesto a moze sa tam zapisovat
 
 \section{Správne zmazanie dát a formátovanie disku}
@@ -627,6 +615,19 @@ Prikaz shred, funguje vsak iba na HDD lebo SSD pouzivaju TRIM (da sa asi vypnut 
 
 \section{Záver}
 ak sa nam stalo ze sme omylom vymazali particiu alebo subory ktore sme nechceli tak treba hned prestat zapisovat na disk a je velka sanca ze data vieme zachranit avsak ak zacneme robit zmeny na disku a nasledne nan zapisovat tak je v podstate jedno aky suborovy system pouzivame v kazdom pripade prepiseme data ktore tam boli
+
+
+\section{Poznatkyy zapracovat}
+
+Poznámka: NIKDY NEZAPISOVAŤ NA DISK Z KTORÉHO CHCEME OBNOVIŤ DÁTA
+Poznámka: Vytvorenie jedného disku a na ňom viacej partícií. Potom som to ale skúsil aj samostatne lebo tak to reálne nikto nebude mať.
+
+Naformátovanie diskov znamená vytvorenie partition table a rozdelenie disku na partície. Následné vytvorenie súborových systémov na daných partíciách.
+
+
+
+pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
+
 
 
 \bibliography{literatura}
