@@ -652,6 +652,8 @@ V prípado NTFS nastali komplikácie. Testdisk hlásil, že súborový systém j
 
 Zo súborového systému ext4 sa mi nepodarilo obnoviť súbor pretože ho testdisk nezobrazoval. Neskôr som sa v dokumentácii dočítal, že testdisk podporuje ext2 čo mi však prišlo zváštne. Každopádne som tento proces skúsil na disku, kde bola jedna partícia naformátovaná na ext2 avšak aj v tomto prípade mi zmazaný súbor nezobrazovalo. Pravdepodobne to bolo spôsobené tým, že som pracoval vo virtuálnom prostredí.
 
+V tomto experimentovaní sme používali pevný disk (HDD). Ak by sme však chceli použiť SSD, bolo by treba aby nemalo funkciu TRIM, alebo ju malo vypnutú. Je to z dôvodu že táto funckia pri SSD diskoch zabezpečuje rovnomerné opotrebovanie disku a preto sa dáta ukladajú náhodne na rôzne bunky a nie sekvenčne ako na HDD. To spôsobuje že po zavolaní tejto funkcie sa spustení tzv. garbage collector a naše dáta sa stanú neobnoviteľnými.
+
 \subsection{Prepísanie zmazaných súborov}
 Z tohto experimentu nám vyplýva, že ak sa nám niekedy náhodou stane že sme vymazali niečo čo sme nechceli, tak je treba čo najskôr prestať zapisovať na disk. To môžeme docieliť kompletným vypnutím počítača. Ak sa nám podarí zastaviť zápis na disk, tak je veľká šanca že sa nám podarí obnoviť zmazané súbory. Ak však začneme zapisovať na disk, tak je šanca že sa nám nepodarí obnoviť súbory, pretože sa dáta prepíšu.
 
@@ -659,18 +661,25 @@ Z tohto experimentu nám vyplýva, že ak sa nám niekedy náhodou stane že sme
 Pri obnove zmazaných partícií som nemal žiadne problémy. Testdisk ich zobrazil a následne som ich mohol obnoviť. V prípade, že by som mal dáta na týchto partíciách, tak by som ich mohol obnoviť. Tento proces by bol podobný ako pri obnove zmazaných súborov.
 
 \section{Bezpečné zmazanie dát z disku}
-Prikaz shred, funguje vsak iba na HDD lebo SSD pouzivaju TRIM (da sa asi vypnut ?) ktory vlastne robi wear and tear mechanizmus aby sa disk opotrebovaval rovnomerne a preto sa data ukladaju náhodne na rôzne bunky a nie sekvenčne ako na HDD aby to bolo rýchlejšie lebo pri ssd na tom nezalezi
+Na bezpečné zmazanie súborov na disku alebo celých partícií vieme použiť príkaz ``shred''. Funguje však iba pre HDD. V prípade SSD nemusí príkaz fungovať vzhľadom na ich mechanizmy rovnomerného opotrebenia. Tieto mechanizmy môžu zabrániť tomu, aby ``shred'' prepísal údaje na mieste, kde má. Hoci neexistuje dokonalé riešenie tohto problému, jedno z riešení je zašifrovanie údajov pred ich vymazaním. Týmto spôsobom budú údaje nečitateľné bez šifrovacieho kľúča aj v prípade ich obnovenia.
 
-sem napisat: ak spravne naformatujeme disk tak ze ho pomocou nejakeho nastroja prepiseme cey viacej krat nahodnymi datami tak je mozne ho predat bez obavy ze sa z neho daju obnovit data ktore tam boli pred tym, je to preto lebo pri vymazavani sa v "mazu" v podstate iba zaznami o danych suboroch repsketive sa oznacia ze tam je teraz volne miesto a moze sa tam zapisovat
+Príkaz ``shred'' dokáže prepísať súbor/y náhodnými dátami a použitím daných prepínač si môžeme vybrať koľko krát sa toto prepisovanie udiať. Taktiež si môžeme vybrať aby sa na konci prepísal na samé nuli aby sme zamaskovali stopy po prepísaní. Následne súbor vieme pomocou prepínača aj vymazať.
+
+Ukážka použitia príkazu ``shred'' na súbore ``test.txt'':
+\begin{verbatim}
+	shred -n 5 -vz test.txt
+\end{verbatim}
+Prepíšeme daný súbor 5 krát, na konci ho prepíšeme na samé nuly.
+
+Ukážka použitia pre bezpečné zmazanie partície:
+\begin{verbatim}
+	shred -n 5 -vz /dev/sda
+\end{verbatim}
+
+Prepínč ``-n'' určuje koľko krát sa má súbor/partícia prepísať, ``-v'' zobrazuje priebeh (tzv. verbose mode) a ``-z'' prepíše súbor/partíciu na samé nuly.
 
 \section{Záver}
-ak sa nam stalo ze sme omylom vymazali particiu alebo subory ktore sme nechceli tak treba hned prestat zapisovat na disk a je velka sanca ze data vieme zachranit avsak ak zacneme robit zmeny na disku a nasledne nan zapisovat tak je v podstate jedno aky suborovy system pouzivame v kazdom pripade prepiseme data ktore tam boli
-
-
-\section{Poznatky zapracovat}
-
-pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
-
+V tejto práci sme sa zaoberali súborovými systémami a nástrojmi na obnovu dát. Na začiatku sme si predstavili súborové systémy NTFS, FAT32, exFAT, ext4 a nástroj testdisk. Taktiež sme sa zaoberali výhodami a nevýhodami každého spomenutého súborového systému. Potom sme sa venovali experimentovaniu s nástrojom testdisk. Vyskúšali sme obnovu zmazaných súborov a partícií. Následne sme sa pozreli na bezpečné zmazanie dát z disku. Na záver môžeme povedať, že nástroj testdisk je veľmi užitočný nástroj na obnovu dát avšak ak sa nám stane situácia, kedy zmažeme dáta, ktoré sme nechceli zmazať, tak je dôležité aby sme čo najskôr prestať zapisovať na disk.
 
 \pagebreak
 \bibliography{literatura}
