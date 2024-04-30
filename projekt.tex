@@ -544,7 +544,7 @@ Po vybratí možnosti ``Advanced'' nám nástroj zobrazí zistené partície na 
 	\caption{Testdisk --- výber partície}
 \end{figure}
 
-V našom prípade použijeme možnosť ``undelete'', ktorá umožnuje obnoviť zmazané súbory. Kedže sme mi zatiaľ nič nevymazali tak nám zobrazí súbory a priečinky, ktoré sa tam nachádzajú podobne ako pri ``ls'' alebo ``dir''.
+V našom prípade použijeme možnosť ``undelete'', ktorá umožnuje obnoviť zmazané súbory. Kedže sme zatiaľ nič nevymazali, tak nám zobrazí súbory a priečinky, ktoré sa tam nachádzajú podobne ako pri ``ls'' alebo ``dir''.
 
 \begin{figure}[H]
 	\centering
@@ -574,7 +574,7 @@ Potom si opäť spustíme nástroj testdisk s tým že urobíme rovnaké kroky a
 	\caption{Testdisk --- obnova zmazaných súborov}
 \end{figure}
 
-Následne nám nástroj zobrazí možnosť kam chceme súbor skopírovať. Vyberieme si cestu a stlačíme veľké ``C''. Potom nám nástroj zobrazí informáciu o tom, či bol súbor úspešne skopírovaný.
+Ďalej nám nástroj zobrazí možnosť kam chceme súbor skopírovať. Vyberieme si cestu a stlačíme veľké ``C''. Potom nám nástroj zobrazí informáciu o tom, či bol súbor úspešne skopírovaný.
 
 \begin{figure}[H]
 	\centering
@@ -586,9 +586,54 @@ Následne nám nástroj zobrazí možnosť kam chceme súbor skopírovať. Vyber
 
 Tento proces zopakujeme na všetkých partíciách nášho testovacieho disku.
 
+\subsection{Zapísanie na miesto zmazaného súboru}
+Po predošlom experimentovaní som stiahol iný obrázok z NASA JWST, ktorý mal veľkosť 172 MB. Uložil som ho na každú partíciu. Následne som ho vymazal, ale potom som na partície nahral ešte textový súbor, ktorý mal 150 MB aby prepísal pozostalé dáta o obrázku. Keď som sa pokúsil obnoviť obrázok, tak som síce našiel jeho záznam, ale keď som ho obnovil, tak jeho začiatok bol prepísaný textovým súborom. Týmto sme o dáta z obrázka prišli, pretože sa po obnovení nedal prezerať.
+
+Tento proces som vizualizoval pomocou webu \url{https://binvis.io/}. Na obrázku je vidieť nepoškodený súbor vľavo a potom z polovice prepísaný súbor vpravo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/overriden_deleted_file.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Vizualizácia pomocou binvis.io}
+\end{figure}
+
+Na druhej vizualizácii je vidieť kde už pokračujú pozostatky dát z obrázku, pretože nebol prepísaný celý, keďže bol väčší ako textový súbor.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/overriden_deleted_file2.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Vizualizácia pomocou binvis.io --- pozostatky dát}
+\end{figure}
+
+Táto skutočnosť nastáva z dôvodu, že pri mazaní súborov z disku sa vymaže iba záznam o súbore a nie sám súbor. V skutočnosti sa ani sám záznam priamo nevymaže ale iba sa označí že na miesto, ktoré mal disk alokovaný pre seba je teraz možné znova zapisovať. Preto je možné dáta z diskov obnoviť ale iba v prípade, že nebudeme zapisovať na daný disk. Keď sa však na miesto zmazaného súboru zapíše iný súbor, tak sa dáta pôvodného súboru prepíšu a týmto sa stane neobnoviteľným.
+
 
 \subsection{Zmazanie a obnova partície}
-zvladol vsetky obnovit, dokonca aj ked bolo viacej particii na jednom disku a kazda mala iný filesystem.
+Po predošlom experimentovaní som na záver pomocou programu Gparted vymazal všetky partície.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/partitions_deletion.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{GParted --- Vymazanie partícií}
+\end{figure}
+
+Opät som spustil nástroj testdisk a postupoval podobne ako pri obnove súborov, avšak tentoraz som vybral možnosť ``Analyse'' a nástroj mi zobrazil všetky zmazané partície. Môžeme si všimnúť, že posledná partícia bola označená ako NTFS aj keď bola naformátovaná na exFAT. Testdisk pravdepodobne iba chybne určil typ jej súborového systému. Následne som potvrdil aby sa partície obnovili. Chyba určenia typu pri exFAT nakoniec ničomu nevadila, pretože aplikácia GNOME Disks vedela že ide o exFAT. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/partitions_recovery.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- obnova zmazaných partícií}
+\end{figure}
+
+
 
 \section{Výsledky experimentov}
 \subsection{Zmazanie súborov}
@@ -604,9 +649,12 @@ V prípado NTFS nastali komplikácie. Testdisk hlásil, že súborový systém j
 	\caption{Testdisk --- obnova zmazaných súborov --- NTFS}
 \end{figure}
 
-Zo súborového systému ext4 sa mi nepodarilo obnoviť súbor pretože ho testdisk nezobrazoval. Neskôr som sa v dokumentácii dočítal, že testdisk podporuje ext2 čo mi však prišlo zváštne. Každopádne som tento proces skúsil na disku, kde bola jedna partícia naformátovaná na ext2 avšak aj v tomto prípade mi zmazaný súbor nezobrazovalo. Pravdepodobne to bolo spôsobené tým, že som pracoval na virtuálnom prostredí.
+Zo súborového systému ext4 sa mi nepodarilo obnoviť súbor pretože ho testdisk nezobrazoval. Neskôr som sa v dokumentácii dočítal, že testdisk podporuje ext2 čo mi však prišlo zváštne. Každopádne som tento proces skúsil na disku, kde bola jedna partícia naformátovaná na ext2 avšak aj v tomto prípade mi zmazaný súbor nezobrazovalo. Pravdepodobne to bolo spôsobené tým, že som pracoval vo virtuálnom prostredí.
+
+\subsection{Prepísanie zmazaných súborov}
 
 \subsection{Zmazanie partície}
+zvladol vsetky obnovit, dokonca aj ked bolo viacej particii na jednom disku a kazda mala iný filesystem.
 
 sem napisat vysledky a nakoniec napisat toto: ak spravne naformatujeme disk tak ze ho pomocou nejakeho nastroja prepiseme cey viacej krat nahodnymi datami tak je mozne ho predat bez obavy ze sa z neho daju obnovit data ktore tam boli pred tym, je to preto lebo pri vymazavani sa v "mazu" v podstate iba zaznami o danych suboroch repsketive sa oznacia ze tam je teraz volne miesto a moze sa tam zapisovat
 
@@ -617,14 +665,7 @@ Prikaz shred, funguje vsak iba na HDD lebo SSD pouzivaju TRIM (da sa asi vypnut 
 ak sa nam stalo ze sme omylom vymazali particiu alebo subory ktore sme nechceli tak treba hned prestat zapisovat na disk a je velka sanca ze data vieme zachranit avsak ak zacneme robit zmeny na disku a nasledne nan zapisovat tak je v podstate jedno aky suborovy system pouzivame v kazdom pripade prepiseme data ktore tam boli
 
 
-\section{Poznatkyy zapracovat}
-
-Poznámka: NIKDY NEZAPISOVAŤ NA DISK Z KTORÉHO CHCEME OBNOVIŤ DÁTA
-Poznámka: Vytvorenie jedného disku a na ňom viacej partícií. Potom som to ale skúsil aj samostatne lebo tak to reálne nikto nebude mať.
-
-Naformátovanie diskov znamená vytvorenie partition table a rozdelenie disku na partície. Následné vytvorenie súborových systémov na daných partíciách.
-
-
+\section{Poznatky zapracovat}
 
 pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
 
