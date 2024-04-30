@@ -23,6 +23,7 @@
 \usepackage{caption}
 \usepackage{tabularx}
 \usepackage[numbers]{natbib}
+\usepackage{listings} % for text/code highlighting
 
 % riadkovanie 1.5
 \begin{document}
@@ -508,7 +509,7 @@ Po vybratí typu logovania sa nám zobrazí obrazovka, kde si môžeme vybrať d
 	\caption{Testdisk --- výber disku}
 \end{figure}
 
-Následne nám nástroj automaticky zistí typ partition table. V prípade že nástroj zistí typ chybne, môžeme ho sami vybrať.
+Následne nám nástroj automaticky zistí typ partition table. V prípade že nástroj zistí typ chybne, môžeme ho sami vybrať. Náš disk má partition table typu GPT, takže nástroj ho zistil správne a my sme možnosť potvrdili.
 
 \begin{figure}[H]
 	\centering
@@ -518,7 +519,99 @@ Následne nám nástroj automaticky zistí typ partition table. V prípade že n
 	\caption{Testdisk --- výber partition table}
 \end{figure}
 
+Po jeho vybratí sa nám zobrazilo menu na prácu s diskom. Pre nás podstatné budú možnosti ``Analyse'' a ``Advanced''.
 
+\begin{spacing}{1.0}
+	\begin{itemize}
+		\item Analyse
+			\begin{itemize}
+				\item Táto možnosť nám umožní analyzovať disk a nájsť chyby súborového systému. Taktiež slúži na obnovu partícií.
+			\end{itemize}
+		\item Advanced
+			\begin{itemize}
+				\item Táto možnosť nám zobrazí zistené partície na disku. S ktorými budeme mocť ďalej pracovať.
+			\end{itemize}
+	\end{itemize}
+\end{spacing}
+
+Po vybratí možnosti ``Advanced'' nám nástroj zobrazí zistené partície na disku. Najskôr si vyberieme partíciu, s ktorou chceme pracovať a v dolnom menu si vyberieme čo chceme s danou partíciou robiť.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_choose_partition.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- výber partície}
+\end{figure}
+
+V našom prípade použijeme možnosť ``undelete'', ktorá umožnuje obnoviť zmazané súbory. Kedže sme mi zatiaľ nič nevymazali tak nám zobrazí súbory a priečinky, ktoré sa tam nachádzajú podobne ako pri ``ls'' alebo ``dir''.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{./images/testdisk_testing/testdisk_list_files.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- zobrazenie súborov}
+\end{figure}
+
+Následne vypneme nástroj a zmažeme súbor z každej partície s tým, že zároveň ich vymažeme aj z koša.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{./images/testdisk_testing/file_deletion.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Vymazanie súborov}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_deleted_file_recovery.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- obnova zmazaných súborov}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{./images/testdisk_testing/testdisk_deleted_file_recovery2.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- kopírovanie zmazaného súboru}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_deleted_file_recovery3.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- obnova zmazaných súborov --- NTFS}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------
 
 podarilo uplne v pohode pri fat32 a exfat, pri ntfs bol problem asi to ze to bezalo na linuxe ale podarilo sa to obnovit cez inodes ale bolo treba premenovat subor aj s koncovkou a nastavit ownership nad nim, z ext4 sa nepodarilo z nejakoho dovodu, pri SSD diskoch je treba mat vypnutu funkciu TRIM, ktora je zodpovedna za rovnomerne opotrebovávanie disku a preto neukladá dáta sekvenčne ako HDD aby bolo rýchlejšie ale ukladá náhodne na rôzne bunky.
 
