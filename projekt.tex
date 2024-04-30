@@ -446,7 +446,7 @@ Stiahol som si testovací súbor dostatočne veľký na to, aby pokrýval nadpol
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/testdisk_testing/gparted-setup.png}
+	\includegraphics[scale=0.8]{./images/testdisk_testing/gparted-setup.png}
 	\centering
 	\caption{Gparted --- úvodné nastavenie diskov}
 \end{figure}
@@ -454,7 +454,7 @@ Stiahol som si testovací súbor dostatočne veľký na to, aby pokrýval nadpol
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/testdisk_testing/disk-mount-gnome-disks.png}
+	\includegraphics[scale=0.8]{./images/testdisk_testing/disk-mount-gnome-disks.png}
 	\centering
 	\caption{Mountnutie diskov/partícií pomocou Gnome Disks}
 \end{figure}
@@ -465,7 +465,7 @@ Najskôr som naplnil všetky partície súborom.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{./images/testdisk_testing/naplnenie_particii_lsblk.png}
+	\includegraphics[scale=0.8]{./images/testdisk_testing/naplnenie_particii_lsblk.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Zobrazenie naplnených partícií --- lsblk}
@@ -473,12 +473,50 @@ Najskôr som naplnil všetky partície súborom.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{./images/testdisk_testing/naplnenie_particii_lss.png}
+	\includegraphics[scale=0.8]{./images/testdisk_testing/naplnenie_particii_lss.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Zobrazenie naplnených partícií --- ls}
 \end{figure}
 
+
+Následne som spustil nástroj testdisk v terminály.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_UI.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- UI}
+\end{figure}
+
+Po vybratí typu logovania sa nám zobrazí obrazovka, kde si môžeme vybrať disk, s ktorým chceme pracovať.
+
+\begin{spacing}{1.0}	
+\begin{itemize}
+	\item /dev/sda --- systémový disk
+	\item /dev/sdb --- disk, ktorý som vytvoril pre testovanie
+\end{itemize}
+\end{spacing}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_choose_disk.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- výber disku}
+\end{figure}
+
+Následne nám nástroj automaticky zistí typ partition table. V prípade že nástroj zistí typ chybne, môžeme ho sami vybrať.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{./images/testdisk_testing/choose_partition_table.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- výber partition table}
+\end{figure}
 
 
 
