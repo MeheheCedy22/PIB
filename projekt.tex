@@ -435,7 +435,7 @@ Prečo som si vybral práve testdisk? Pretože je univerzálny, dokáže obnovi�
 
 % fixnut ako toto znie a rozmiestnit obrazky
 
-Najskôr bolo potrebné si pripraviť testovacie prostredie. Uvažoval som aj nad testovaním na fyzickom disku, ale keďže na mojom počítači mám operačný systém Windows a ten nedokáže pracovať s diskami, ktoré sú naformátované na ext, tak som sa rozhodol, že budem pracovať na virtuálnom stroji (VM\footnote{Virtual Machine}). Použil som program VirtualBox, ktorý je zadarmo. Na VM som nainštaloval vtedy najnovšiu verziu distribúcie Arch. Najprv som si nastavil prostredie aby sa mi lepšie pracovalo. Následne som si stiahol potrebné nástroje a dependencies. Potom som vytvoril virtuálne disky, ktorý som najskôr naformátoval a neskôr pripojil (mountol) do systému. Po tomto sa mohlo začať s experimentovaním.
+Najskôr bolo potrebné si pripraviť testovacie prostredie. Uvažoval som aj nad testovaním na fyzickom disku, ale keďže na mojom počítači mám operačný systém Windows a ten nedokáže pracovať s diskami, ktoré sú naformátované na ext, tak som sa rozhodol, že budem pracovať na virtuálnom stroji (VM\footnote{Virtual Machine}). Použil som program VirtualBox, ktorý je zadarmo. Na VM som nainštaloval vtedy najnovšiu verziu distribúcie Arch. Najprv som si nastavil prostredie, aby sa mi lepšie pracovalo. Následne som si stiahol potrebné nástroje a dependencies. Potom som vytvoril virtuálny disk, ktorý som najskôr naformátoval a neskôr pripojil (mountol) do systému. Po tejto predpríprave sa mohlo začať s experimentovaním.
 
 Najpr som testoval tak, že som mal jeden disk o veľkosti 1 GB a mal 4 partície pre každý súborový systém, ktorému som sa chcel venovať (FAT32, exFAT, NTFS, ext4). Každá partícia mala veľkosť 200 MB. Neskôr kvôli komplikáciám s ext4 som skúsil aj samostatne jeden disk pre každý súborový systém.
 
@@ -446,7 +446,7 @@ Stiahol som si testovací súbor dostatočne veľký na to, aby pokrýval nadpol
 	\captionsetup{justification=centering,margin=2cm}
 	\includegraphics[width=\linewidth]{./images/testdisk_testing/NASA-JWST.png}
 	\centering
-	\caption{Testovací obrázok}
+	\caption{Testovací obrázok \\ Zdroj: https://stsci-opo.org/STScI-01GA6KKWG229B16K4Q38CH3BXS.png}
 \end{figure}
 
 \begin{figure}[H]
@@ -460,10 +460,12 @@ Stiahol som si testovací súbor dostatočne veľký na to, aby pokrýval nadpol
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[scale=0.8]{./images/testdisk_testing/disk-mount-gnome-disks.png}
+	\includegraphics[scale=0.7]{./images/testdisk_testing/disk-mount-gnome-disks.png}
 	\centering
 	\caption{Mountnutie diskov/partícií pomocou Gnome Disks}
 \end{figure}
+
+\pagebreak
 
 
 \subsection{Zmazanie a obnova súborov}
@@ -471,7 +473,7 @@ Najskôr som naplnil všetky partície súborom.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{./images/testdisk_testing/naplnenie_particii_lsblk.png}
+	\includegraphics[scale=0.7]{./images/testdisk_testing/naplnenie_particii_lsblk.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Zobrazenie naplnených partícií --- lsblk}
@@ -479,7 +481,7 @@ Najskôr som naplnil všetky partície súborom.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{./images/testdisk_testing/naplnenie_particii_lss.png}
+	\includegraphics[scale=0.7]{./images/testdisk_testing/naplnenie_particii_lss.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Zobrazenie naplnených partícií --- ls}
@@ -490,10 +492,10 @@ Následne som spustil nástroj testdisk v terminály.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_UI.png}
+	\includegraphics[scale=0.7]{./images/testdisk_testing/testdisk_UI.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\caption{Testdisk --- UI}
+	\caption{Testdisk --- Úvodné menu}
 \end{figure}
 
 Po vybratí typu logovania sa nám zobrazí obrazovka, kde si môžeme vybrať disk, s ktorým chceme pracovať.
@@ -539,6 +541,14 @@ Po jeho vybratí sa nám zobrazilo menu na prácu s diskom. Pre nás podstatné 
 	\end{itemize}
 \end{spacing}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{./images/testdisk_testing/testdisk_analyse_advanced.png}
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\caption{Testdisk --- Analyse a Advanced menu}
+\end{figure}
+
 Po vybratí možnosti ``Advanced'' nám nástroj zobrazí zistené partície na disku. Najskôr si vyberieme partíciu, s ktorou chceme pracovať a v dolnom menu si vyberieme čo chceme s danou partíciou robiť.
 
 \begin{figure}[H]
@@ -568,6 +578,8 @@ Následne vypneme nástroj a zmažeme súbor z každej partície s tým, že zá
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Vymazanie súborov}
 \end{figure}
+
+\pagebreak
 
 Potom si opäť spustíme nástroj testdisk s tým že urobíme rovnaké kroky ako boli pred chvíľou spomenuté. Následne si vyberieme možnosť ``undelete'' a nástroj nám zobrazí zmazaný súbor. Všimnime si, že teraz je súbor označený červenou farbou. Následne si ho zvolíme a stlačíme malé ``c'' na jeho skopírovanie.
 
