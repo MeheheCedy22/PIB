@@ -659,7 +659,7 @@ Opät som spustil nástroj testdisk a postupoval podobne ako pri obnove súborov
 \subsection{Zmazanie súborov}
 Pri práci s FAT32 a exFAT neboli problémy a súbor sa mi podarilo v poriadku obnoviť.
 
-V prípado NTFS nastali komplikácie. Testdisk hlásil, že súborový systém je poškodený. Vtedy som zvolil možnosť ``Analyse'', ktorá ho opravila a potom po reštarte VM a spustení testdisku som mohol pokračovať v obnove zmazaných súborov. Pri NTFS sa to riešilo cez inodes a pri obnove bolo treba premenovať súbor aj s koncovkou a nastaviť nad ním vlastníctvo\footnote{ownership}. Táto komplikácia bola pravdepodobne spôsobená tým, že som pracoval na virtuálnom stroji a nie na fyzickom disku. Prípadne preto, že som pracoval na Linuxe a nie na Windows.
+V prípade NTFS nastali komplikácie. Testdisk hlásil, že súborový systém je poškodený. Vtedy som zvolil možnosť ``Analyse'', ktorá ho opravila a potom po reštarte VM a spustení testdisku som mohol pokračovať v obnove zmazaných súborov. Pri NTFS sa to riešilo cez inodes a pri obnove bolo treba premenovať súbor aj s koncovkou a nastaviť nad ním vlastníctvo\footnote{ownership}. Táto komplikácia bola pravdepodobne spôsobená tým, že som pracoval na virtuálnom stroji a nie na fyzickom disku. Prípadne preto, že som pracoval na Linuxe a nie na Windowse.
 
 \begin{figure}[H]
 	\centering
@@ -671,7 +671,7 @@ V prípado NTFS nastali komplikácie. Testdisk hlásil, že súborový systém j
 
 Zo súborového systému ext4 sa mi nepodarilo obnoviť súbor pretože ho testdisk nezobrazoval. Neskôr som sa v dokumentácii dočítal, že testdisk podporuje ext2 čo mi však prišlo zváštne. Každopádne som tento proces skúsil na disku, kde bola jedna partícia naformátovaná na ext2 avšak aj v tomto prípade mi zmazaný súbor nezobrazovalo. Pravdepodobne to bolo spôsobené tým, že som pracoval vo virtuálnom prostredí.
 
-V tomto experimentovaní sme používali pevný disk (HDD). Ak by sme však chceli použiť SSD, bolo by treba aby nemalo funkciu TRIM, alebo ju malo vypnutú. Je to z dôvodu že táto funckia pri SSD diskoch zabezpečuje rovnomerné opotrebovanie disku a preto sa dáta ukladajú náhodne na rôzne bunky a nie sekvenčne ako na HDD. To spôsobuje že po zavolaní tejto funkcie sa spustení tzv. garbage collector a naše dáta sa stanú neobnoviteľnými.
+V tomto experimentovaní sme používali pevný disk (HDD). Ak by sme však chceli použiť SSD, bolo by treba aby, nemalo funkciu TRIM, alebo ju malo vypnutú. Je to z dôvodu že táto funckia pri SSD diskoch zabezpečuje rovnomerné opotrebovanie disku a preto sa dáta ukladajú náhodne na rôzne bunky a nie sekvenčne ako na HDD. To spôsobuje že po zavolaní tejto funkcie sa spustení tzv. garbage collector a naše dáta sa stanú neobnoviteľnými.
 
 \subsection{Prepísanie zmazaných súborov}
 Z tohto experimentu nám vyplýva, že ak sa nám niekedy náhodou stane že sme vymazali niečo čo sme nechceli, tak je treba čo najskôr prestať zapisovať na disk. To môžeme docieliť kompletným vypnutím počítača. Ak sa nám podarí zastaviť zápis na disk, tak je veľká šanca že sa nám podarí obnoviť zmazané súbory. Ak však začneme zapisovať na disk, tak je šanca že sa nám nepodarí obnoviť súbory, pretože sa dáta prepíšu.
@@ -682,7 +682,7 @@ Pri obnove zmazaných partícií som nemal žiadne problémy. Testdisk ich zobra
 \section{Bezpečné zmazanie dát z disku}
 Na bezpečné zmazanie súborov na disku alebo celých partícií vieme použiť príkaz ``shred''. Funguje však iba pre HDD. V prípade SSD nemusí príkaz fungovať vzhľadom na ich mechanizmy rovnomerného opotrebenia. Tieto mechanizmy môžu zabrániť tomu, aby ``shred'' prepísal údaje na mieste, kde má. Hoci neexistuje dokonalé riešenie tohto problému, jedno z riešení je zašifrovanie údajov pred ich vymazaním. Týmto spôsobom budú údaje nečitateľné bez šifrovacieho kľúča aj v prípade ich obnovenia.
 
-Príkaz ``shred'' dokáže prepísať súbor/y náhodnými dátami a použitím daných prepínač si môžeme vybrať koľko krát sa toto prepisovanie udiať. Taktiež si môžeme vybrať aby sa na konci prepísal na samé nuli aby sme zamaskovali stopy po prepísaní. Následne súbor vieme pomocou prepínača aj vymazať.
+Príkaz ``shred'' dokáže prepísať súbor/y náhodnými dátami a použitím daných prepínačov si môžeme vybrať koľko krát sa toto prepisovanie bude diať. Taktiež si môžeme vybrať aby sa na konci prepísal na samé nuli, aby sme zamaskovali stopy po prepísaní. Následne súbor vieme pomocou prepínača aj vymazať.
 
 Ukážka použitia príkazu ``shred'' na súbore ``test.txt'':
 \begin{verbatim}
