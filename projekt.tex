@@ -296,7 +296,7 @@ ext bol prvým z radu rozšírených súborových systémov. V roku 1993 ho nahr
 Ďaľej sa tento súborvý systém rozširoval a aktualizoval. Z tohto vznikli novšie verzie ext3 a ext4.
 
 \subsubsection{ext4}
-Podobne ako pri NTFS aj ext4 je tzv. žurnálový súborový systém. Je veľmi abstraktný čo je výhodou pre software pretože sa software developery nemusia zaoberať priveľa súborovým systémom a ich program bz mal fungovať na každom rovnako. Abstrakcia znamená že všetok hardware (disky, a pod.) sú v ext4 reprezentované ako súbor. Má až takú úroveň abstrakcia že vlastne všetko je v podstate súbor. Používa sa ako predvolený súborový systém pre disky na distribúciách založených na Debian a Ubuntu. Taktiež je spätne kombatibilný s ext3.
+Podobne ako pri NTFS aj ext4 je tzv. žurnálový súborový systém. Je veľmi abstraktný čo je výhodou pre software pretože sa softvérový inžinieri nemusia zaoberať priveľa súborovým systémom a ich program by mal fungovať na každom rovnako. Abstrakcia znamená že všetok hardware (disky, a pod.) sú v ext4 reprezentované ako súbor. Má až takú úroveň abstrakcia že vlastne všetko je v podstate súbor. Používa sa ako predvolený súborový systém pre disky na distribúciách založených na Debian a Ubuntu. Taktiež je spätne kombatibilný s ext3.
 
 \subsubsection{Štruktúra ext4}
 Novo naformátovaný disk s ext4 vyzerá nasledovne:
@@ -304,7 +304,7 @@ Novo naformátovaný disk s ext4 vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/file_system_structure/ext-file-system-structure.png}
+	\includegraphics[scale=0.6]{./images/file_system_structure/ext-file-system-structure.png}
 	\centering
 	\caption{Štruktúra súborového systému ext4 \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -356,7 +356,7 @@ Novo naformátovaný disk s ext4 vyzerá nasledovne:
 \multicolumn{1}{|c|}{\textbf{Výhody}} & \multicolumn{1}{c|}{\textbf{Nevýhody}} \\ \hline
 Podporuje najväčšiu individuálnu veľkosť súboru a veľkosť zväzku súborového systému. & Neposkytuje zabezpečenie dát. \\ \hline
 Podporuje všetky znaky okrem NULL a '/.' & Ťažké vytvoriť snapshot na inom zväzku. \\ \hline
-Môžete previesť súborový systém Ext3 na Ext4. & Využíva viacej miesta na disku. \\ \hline
+Môžeme previesť súborový systém Ext3 na Ext4. & Využíva viacej miesta na disku. \\ \hline
 Zahŕňa pokročilé funkcie ako rozšírenie, indexovanie adresárov, oneskorenú alokáciu a defragmentáciu. &  \\ \hline
 Podporuje neobmedzený počet podadresárov. &  \\ \hline
 Používa timestamp v nanosekundách. &  \\ \hline
@@ -368,16 +368,18 @@ Podporuje viacnásobnú alokáciu blokov. &  \\ \hline
 \caption{Výhody a nevýhody súborového systému Ext4 \\ Zdroj: https://www.easeus.com/partition-master/ext2-ext3-ext4-file-system-format-and-difference.html}
 \end{table}
 
+\pagebreak % možno nie je treba ?
+
 % ----------------- 3. kapitola -----------------
 
 \section{Nástroje na obnovu údajov}
-Existuje mnoho nástrojov na obnovu údajov. Či už ide o špecializované nástroje pre obnovu fotiek alebo multimediálnych súborov, alebo o univerzálne nástroje, ktoré dokážu obnoviť akékoľvek súbory. V tejto kapitole sa pozrieme na niektoré z nich.
+Existuje mnoho nástrojov na obnovu údajov. Či už ide o špecializované nástroje pre obnovu fotiek alebo multimediálnych súborov, alebo o univerzálne nástroje, ktoré dokážu obnoviť akékoľvek súbory. V tejto kapitole si ich pár stručne predstavíme.
 
 \begin{spacing}{1.0}
 \begin{itemize}
 	\item Recuva
 		\begin{itemize}
-			\item Široko používaný a ľahko ovládateľný nástroj s pokročilými možnosťami skenovania pre rôzne typy súborov. Dostuoný pre platofrmu Windows.
+			\item Široko používaný a ľahko ovládateľný nástroj s pokročilými možnosťami skenovania pre rôzne typy súborov. Dostupný pre platofrmu Windows.
 		\end{itemize}
 	\item PhotoRec
 		\begin{itemize}
@@ -396,27 +398,27 @@ Existuje mnoho nástrojov na obnovu údajov. Či už ide o špecializované nás
 
 \begin{figure}[H]
 	\centering
-	\begin{minipage}{.15\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
         \includegraphics[width=\linewidth]{./images/tools-avatars/recuva.png}
 		\captionsetup{justification=centering}
         \caption{Recuva}
     \end{minipage}\hfill
 	\centering
-	\begin{minipage}{.15\textwidth}
+	\begin{minipage}{.2\textwidth}
 		\centering
         \includegraphics[width=\linewidth]{./images/tools-avatars/photo_rec.png}
 		\captionsetup{justification=centering}
         \caption{PhotoRec}
     \end{minipage}\hfill
     \centering
-    \begin{minipage}{.15\textwidth}
+	\begin{minipage}{.2\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./images/tools-avatars/testdisk.png}
 		\captionsetup{justification=centering}
         \caption{Testdisk}
     \end{minipage}\hfill
-    \begin{minipage}{.15\textwidth}
+	\begin{minipage}{.2\textwidth}
         \centering
         \includegraphics[width=\linewidth]{./images/tools-avatars/disk_drill.png}
 		\captionsetup{justification=centering}
