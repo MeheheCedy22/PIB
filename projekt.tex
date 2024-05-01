@@ -616,6 +616,8 @@ Tento proces som vizualizoval pomocou webu \url{https://binvis.io/}. Na obrázku
 	\caption{Vizualizácia pomocou binvis.io}
 \end{figure}
 
+\pagebreak
+
 Na druhej vizualizácii je vidieť kde už pokračujú pozostatky dát z obrázku, pretože nebol prepísaný celý, keďže bol väčší ako textový súbor.
 
 \begin{figure}[H]
@@ -626,25 +628,26 @@ Na druhej vizualizácii je vidieť kde už pokračujú pozostatky dát z obrázk
 	\caption{Vizualizácia pomocou binvis.io --- pozostatky dát}
 \end{figure}
 
-Táto skutočnosť nastáva z dôvodu, že pri mazaní súborov z disku sa vymaže iba záznam o súbore a nie sám súbor. V skutočnosti sa ani sám záznam priamo nevymaže ale iba sa označí že na miesto, ktoré mal disk alokovaný pre seba je teraz možné znova zapisovať. Preto je možné dáta z diskov obnoviť ale iba v prípade, že nebudeme zapisovať na daný disk. Keď sa však na miesto zmazaného súboru zapíše iný súbor, tak sa dáta pôvodného súboru prepíšu a týmto sa stane neobnoviteľným.
+Táto skutočnosť nastáva z dôvodu, že pri mazaní súborov z disku sa vymaže iba záznam o súbore a nie sám súbor. V skutočnosti sa ani sám záznam priamo nevymaže ale iba sa označí že na miesto, ktoré mal súbor alokovaný pre seba je teraz možné znova zapisovať. Preto je možné dáta z diskov obnoviť ale iba v prípade, že nebudeme zapisovať na daný disk. Keď sa však na miesto zmazaného súboru zapíše iný súbor, tak sa dáta pôvodného súboru prepíšu a týmto sa stane neobnoviteľným.
 
+\pagebreak
 
 \subsection{Zmazanie a obnova partícií}
 Po predošlom experimentovaní som na záver pomocou programu Gparted vymazal všetky partície.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{./images/testdisk_testing/partitions_deletion.png}
+	\includegraphics[scale=0.4]{./images/testdisk_testing/partitions_deletion.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{GParted --- Vymazanie partícií}
 \end{figure}
 
-Opät som spustil nástroj testdisk a postupoval podobne ako pri obnove súborov, avšak tentoraz som vybral možnosť ``Analyse'' a nástroj mi zobrazil všetky zmazané partície. Môžeme si všimnúť, že posledná partícia bola označená ako NTFS aj keď bola naformátovaná na exFAT. Testdisk pravdepodobne iba chybne určil typ jej súborového systému. Následne som potvrdil aby sa partície obnovili. Chyba určenia typu pri exFAT nakoniec ničomu nevadila, pretože aplikácia GNOME Disks vedela že ide o exFAT. 
+Opät som spustil nástroj testdisk a postupoval podobne ako pri obnove súborov, avšak tento raz som vybral možnosť ``Analyse'' a nástroj mi zobrazil všetky zmazané partície. Môžeme si všimnúť, že posledná partícia bola označená ako NTFS aj keď bola naformátovaná na exFAT. Testdisk pravdepodobne iba chybne určil typ jej súborového systému. Následne som potvrdil aby sa partície obnovili. Chyba určenia typu pri exFAT nakoniec ničomu nevadila, pretože aplikácia GNOME Disks vedela že ide o exFAT. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{./images/testdisk_testing/partitions_recovery.png}
+	\includegraphics[scale=0.5]{./images/testdisk_testing/partitions_recovery.png}
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 	\caption{Testdisk --- obnova zmazaných partícií}
