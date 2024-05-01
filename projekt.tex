@@ -24,6 +24,7 @@
 \usepackage{tabularx}
 \usepackage[numbers]{natbib}
 \usepackage{listings} % for text/code highlighting
+\usepackage[bottom]{footmisc}
 
 % riadkovanie 1.5
 \begin{document}
@@ -79,15 +80,15 @@ Súborový systém je metóda a dátová štruktúra, ktorú operačný systém 
 FAT je súborový systém vyvinutý pre osobné počítače. Pôvodne vyvinutý v roku 1977 na použitie na disketách, neskôr bol prispôsobený na použitie na pevných diskoch a iných zariadeniach. Často je z dôvodov kompatibility podporovaný súčasnými operačnými systémami pre osobné počítače a mnohými mobilnými zariadeniami a ``embed'' systémami. FAT ako taký je už v dnešnej dobe nepoužívaný, ale jeho odnože (FAT32, exFAT) sa doteraz používajú napríklad v prenosných médiách ako USB kľúče, SD karty a podobne.
 
 \subsubsection{FAT32}
-Najpokročilejšia verzia súborového systému FAT je FAT32. S FAT32 sa Microsoft snažil prekonať obmedzenia FAT16 a prispôsobiť sa väčším možným partíciám. Existuje už od Windowsu 95 a naďalej zostáva populárny, pretože je vysoko kompatibilný s väčšinou operačných systémov (GNU+Linux, MAC) a prenosných zariadení. FAT32 podporuje súbory do 4 GB a partície s maximálnou veľkosťou 2 TB. Používa sa prevažne pre EFI partície a prenosné médiá s kapacitou do 32GB.
+Najpokročilejšia verzia súborového systému FAT je FAT32. S FAT32 sa Microsoft snažil prekonať obmedzenia FAT16 a prispôsobiť sa väčším možným partíciám. Existuje už od Windowsu 95 a naďalej zostáva populárny, pretože je vysoko kompatibilný s väčšinou operačných systémov (Windows, Linux, MacOS) a prenosných zariadení. FAT32 podporuje súbory do 4 GB a partície s maximálnou veľkosťou 2 TB. Používa sa prevažne pre EFI partície a prenosné médiá s kapacitou do 32GB.
 
 \subsubsection{Štruktúra FAT a FAT32}
-Novo naformátovaný disk s FAT vyzerá nasledovne:
+Novo naformátovaný disk s FAT a FAT32 vyzerá nasledovne:
 
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/file_system_structure/fat-file-system-structure.png}
+	\includegraphics[scale=0.55]{./images/file_system_structure/fat-file-system-structure.png}
 	\centering
 	\caption{Štruktúra súborového systému FAT a FAT32 \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -132,7 +133,7 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/file_system_structure/exfat-file-system-structure.png} %scale=0.64
+	\includegraphics[scale=0.55]{./images/file_system_structure/exfat-file-system-structure.png} %width=\linewidth
 	\centering
 	\caption{Štruktúra súborového systému exFAT \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -195,7 +196,7 @@ Novo naformátovaný disk s exFAT vyzerá nasledovne:
 \multicolumn{1}{|c|}{\textbf{Výhody}} & \multicolumn{1}{c|}{\textbf{Nevýhody}} \\ \hline
 Vysoko kompatibilný s rôznymi operačnými systémami. & Nedokáže uložiť súbor, ktorý je väčší ako 4GB. \\ \hline
 Je kompatibilný s väčšinou prenosných úložných zariadení. & Nemá natívne šifrovanie súborov a chýbajú mu prístupové povolenia prítomné v moderných súborových systémoch. \\ \hline
-& FAT32 je pomalší na čítanie a zápis dát v porovnaní s modernými súborovými systémami. \\ \hline
+Malá zátaž na systém & FAT32 je pomalší na čítanie a zápis dát v porovnaní s modernými súborovými systémami. \\ \hline
 \end{tabularx}
 \centering
 \captionsetup{justification=centering,margin=2cm}
@@ -212,15 +213,16 @@ Podporuje súbory väčšie ako 4GB. & Absencia žurnálovania a kompresie dát.
 Je predvoleným systémom na SD kartách s vysokou kapacitou & Nemá podporu pre staršie operačné systémy bez špeciálnych ovladačov. \\ \hline
 Veľkosť partície je v podstate neobmedzená. & Nemá natívnu podporu pre šifrovanie dát. \\ \hline
 Efektívenejší ako FAT32. & Nie je efektívnejší ako NTFS alebo ext. \\ \hline
-Podpora všetkých majoritných operačných systémov. & Nie je vhodný pre viac-používateľské aplikácie z dôvody vyššej fragmentácie. \\ \hline
+Podpora všetkých majoritných operačných systémov. & Nie je vhodný pre viac-používateľské aplikácie z dôvodu vyššej fragmentácie. \\ \hline
 \end{tabularx}
 \centering
 \captionsetup{justification=centering,margin=2cm}
 \caption{Výhody a nevýhody súborového systému exFAT \\ Zdroj: https://www.profolus.com/topics/exfat-advantages-disadvantages-extensible-fat/}
 \end{table}
 
+
 \subsection{NTFS - New Technology File System}
-NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{Hard Disk Drive} a neskôr aj pre SSD\footnote{Solid State Drive}. Je však možné ho použiť aj na prenosové média typu USB kľúč a podobne.
+NTFS je proprietárny súborový systém vytvorený spoločnosťou Microsoft. Bol uvedený s vtedy novým operačným systémom Windows NT\footnote{New Technology} v roku 1993. Vtedy nahradil dovtedy veľmi používaný súborový systém FAT. NTFS je predovšetkým určený pre pevné disky HDD\footnote{Hard Disk Drive} a neskôr aj pre SSD\footnote{Solid State Drive}. Je však možné ho použiť aj na prenosné média typu USB kľúč a podobne.
 
 Súborový systém NTFS prináša kombináciu vyššej rýchlosti, väčšej spoľahlivosti a kompatibility oproti súborovému systému FAT, ktorý bol jeho predchodcom v ére operačného systému MS DOS. Natívne podporuje šifrovanie a kompresiu súborov. Podporuje aj veľmi veľké súbory a partície.
 
@@ -232,7 +234,7 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=\linewidth]{./images/file_system_structure/ntfs-file-system-structure.png}
+	\includegraphics[scale=0.59]{./images/file_system_structure/ntfs-file-system-structure.png}
 	\centering
 	\caption{Štruktúra súborového systému NTFS \\ Zdroj: https://www.easeus.com/diskmanager/file-system.html}
 \end{figure}
@@ -264,7 +266,7 @@ Novo naformátovaný disk s NTFS vyzerá nasledovne:
 \end{spacing}
 
 \subsubsection{Bezpečnosť NTFS}
-Ako som vyššie spomenul tak NTFS natívne podporuje šifrovanie súborov, priečinkov ale aj celých partícií. Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým lokálnym súborom a priečinkom. Inými slovami, dôverný súbor môžete nastaviť tak, aby bol pre niektorých iných používateľov nedostupný. Táto metóda sa nazýva riadenie úrovne prístupu (ACL).
+Ako som vyššie spomenul tak NTFS natívne podporuje šifrovanie súborov, priečinkov ale aj celých partícií. Súborový systém NTFS umožňuje nastaviť povolenia na prístup k niektorým lokálnym súborom a priečinkom. Inými slovami, dôverný súbor môžete nastaviť tak, aby bol pre niektorých iných používateľov nedostupný. Táto metóda sa nazýva riadenie úrovne prístupu (ACL\footnote{Access Control List}).
 
 \subsubsection{Výhody a nevýhody NTFS}
 
@@ -276,9 +278,9 @@ Ako som vyššie spomenul tak NTFS natívne podporuje šifrovanie súborov, prie
 Podporuje veľmi veľké súbory a nemá takmer žiadne reálne obmedzenie veľkosti oddielu. & Má uzatvorený zdrojový kód. \\ \hline
 Poskytuje vylepšené zabezpečenie údajov pomocou funkcií riadenia úrovne prístupu a natívneho šifrovania. & Mac OS dokáže čítať jednotky naformátované v systéme NTFS, ale na systém NTFS je možné zapisovať iba prostredníctvom softvéru tretej strany. \\ \hline
 Podporuje automatickú kompresiu súborov, čo umožňuje rýchlejší prenos súborov a väčší úložný priestor na disku. & Prenosné zariadenia, ako sú smartfóny so systémom Android a digitálne fotoaparáty, ho nepodporujú. \\ \hline
-Umožňuje diskové kvóty, ktoré firmám poskytujú väčšiu kontrolu nad úložným priestorom. & Kompatibilita so systémami založenými na GNU+Linux síce existuje ale iba kvôli vôli softvérových inžinerov urobiť ovladače vďaka reverznému inžinierstvu. \\ \hline
+Umožňuje diskové kvóty, ktoré firmám poskytujú väčšiu kontrolu nad úložným priestorom. & Kompatibilita so systémami založenými na Linuxe síce existuje ale iba kvôli vôli softvérových inžinerov urobiť ovladače vďaka reverznému inžinierstvu. \\ \hline
 Umožňuje používateľom sledovať pridané, upravené alebo odstránené súbory na disku. &  \\ \hline
-Zameriava na konzistenciu súborového systému, takže v prípade výpadku napájania alebo zlyhania systému môžete rýchlo obnoviť svoje údaje. &  \\ \hline
+Zameriava na konzistenciu súborového systému, takže v prípade výpadku napájania alebo zlyhania systému môžeme rýchlo obnoviť svoje údaje. &  \\ \hline
 \end{tabularx}
 \centering
 \captionsetup{justification=centering,margin=2cm}
